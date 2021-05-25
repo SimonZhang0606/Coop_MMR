@@ -1,6 +1,8 @@
 # Coop_MMR
 
-# Creating and loading sample data
+Assuming MySQL and PHP are installed:
+
+# Creating sample database
 
 Enter the following commands into the command line:
 
@@ -15,3 +17,11 @@ Enter the following commands into the command line:
     mysql> create user 'justin'@'localhost' identified by 'my_secure_password';
     mysql> grant all on appDB.* to 'justin'@'localhost';
     mysql> alter user 'justin'@'localhost' identified with mysql_native_password by 'my_secure_password';
+
+# Loading application
+
+Enter the following commands into the command line (from the directory of the php file):
+
+    $ php -S 127.0.0.1:8000
+
+Now go to http://127.0.0.1:8000/appDB.php’ in the browser.
