@@ -24,4 +24,4 @@ Enter the following commands into the command line (from the directory of the ph
 
     $ php -S 127.0.0.1:8000
 
-Now go to http://127.0.0.1:8000/appDB.php’ in the browser.
+Now go to http://127.0.0.1:8000/appDB.php in the browser.
