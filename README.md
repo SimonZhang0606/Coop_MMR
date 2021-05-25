@@ -2,7 +2,7 @@
 
 Assuming MySQL and PHP are installed:
 
-# Creating sample database
+## Creating sample database
 
 Enter the following commands into the command line:
 
@@ -18,7 +18,7 @@ Enter the following commands into the command line:
     mysql> grant all on appDB.* to 'justin'@'localhost';
     mysql> alter user 'justin'@'localhost' identified with mysql_native_password by 'my_secure_password';
 
-# Loading application
+## Loading application
 
 Enter the following commands into the command line (from the directory of the php file):
 
