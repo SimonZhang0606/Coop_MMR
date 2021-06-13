@@ -1,7 +1,7 @@
 
-----------------------
+---------Query 1---------
 
-BROWSE ALL COMPANY PAGE
+BROWSE ALL COMPANIES PAGE
 
 ----------------------
 cid	name	avg_salary
@@ -32,27 +32,8 @@ cid	name	avg_review
 COMPANY PAGE FOR EACH COMPANY
 
 ----------------------
-count(*)
-3
 
-----------------------
-count(*)
-3
-
-----------------------
-cid	avg(rating)
-567586557	3.0000
-
-----------------------
-cid	avg(salary)
-567586557	63.566667
-
-----------------------
-term_num	COUNT(term_num)
-4	2
-3	1
-
-----------------------
+-------Query 2--------
 
 LIST ALL JOBS POSTED BY THE COMPANY AND THEIR RELATED INFO
 
@@ -63,3 +44,39 @@ jid	title	avg_salary	avg_review
 443612121	Full Stack Software Engineer	67.600000	3.5000
 562565621	Brand Ambassador	NULL	NULL
 762136656	Mobile Developer	55.500000	2.0000
+
+-----Query 3------
+
+-----TERMS HIRED BY COMPANY------
+term_num	COUNT(term_num)
+4	2
+3	1
+
+----------------------
+
+JOB PAGE
+
+----------------------
+
+-----Query 4------
+
+-----Browse all jobs------
+jid	company_name	job_title	avg_salary	avg_review
+443612121	Wish	Full Stack Software Engineer	67.600000	3.5000
+762136656	Wish	Mobile Developer	55.500000	2.0000
+944545544	McDonalds	Burger Flipper	22.000000	5.0000
+455612155	Alloy	Full Stack Software Engineer	NULL	NULL
+458845544	DarwinAI	Data Associate	NULL	NULL
+562565621	Wish	Brand Ambassador	NULL	NULL
+841215455	SAP	Reverse paid software intern	NULL	NULL
+923451852	McDonalds	Multi-Level Marketing Intern	NULL	NULL
+
+----------------------
+
+-----Query 5------
+
+-----Search job by tag------
+jid	title
+443612121	Full Stack Software Engineer
+455612155	Full Stack Software Engineer
+841215455	Reverse paid software intern
