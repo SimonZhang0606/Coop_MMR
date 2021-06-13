@@ -14,11 +14,10 @@ DROP TABLE IF EXISTS COMPANY;
 DROP TABLE IF EXISTS STUDENT;
 DROP TABLE IF EXISTS TAG;
 
-
 CREATE TABLE TAG
   (
     tid         DECIMAL(9, 0) NOT NULL, 
-    label       VARCHAR(100) NOT NULL,
+    label       VARCHAR(100) UNIQUE NOT NULL,
     PRIMARY KEY (tid)
   );
 
@@ -44,10 +43,8 @@ CREATE TABLE JOB
     jid         DECIMAL(9, 0) NOT NULL, 
     mmr         INT NOT NULL, 
     title       TEXT NOT NULL,
-    tid         DECIMAL(9, 0) NOT NULL, 
     PRIMARY KEY (jid),
-    FOREIGN KEY (cid) REFERENCES COMPANY(cid),
-    FOREIGN KEY (tid) REFERENCES TAG(tid)
+    FOREIGN KEY (cid) REFERENCES COMPANY(cid)
   ); 
 
 CREATE TABLE PLACEMENT 
@@ -81,8 +78,8 @@ CREATE TABLE REVIEW
 
 CREATE TABLE JOB_TAG
   (
-    cid         DECIMAL(9, 0) NOT NULL,
+    jid         DECIMAL(9, 0) NOT NULL,
     tid         DECIMAL(9, 0) NOT NULL,
-    PRIMARY KEY(cid, tid),
-    FOREIGN KEY(cid) REFERENCES COMPANY(cid)
+    PRIMARY KEY(jid, tid),
+    FOREIGN KEY(jid) REFERENCES JOB(jid)
   );

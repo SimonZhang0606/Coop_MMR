@@ -1,0 +1,8 @@
+785121224	software
+954545655	full-stack
+985212122	mobile
+226912555	data science
+711223588	machine learning
+851235456	infrastructure
+651235875	artificial intelligence
+545665653	product management

@@ -1,0 +1,4 @@
+567586557	443612121	564413584	“COMPANY IS FANTASTIC”	“great comp. That’s all I gotta say.” 	5 
+567586557	762136656	564423584	“BAD COMPANY”	“Comp sucks. Only 55 an hour” 	2
+451237655	944545544	564413535	“Work is fun”	“The work was very rewarding, I learned a lot in this coop” 	5 
+567586557	443612121	564415584	“INTERVIEW SUCKED”	“I got laughed out because I didn’t know how to reverse a linked list, very unprofessional” 	2
