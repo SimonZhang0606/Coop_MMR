@@ -13,7 +13,8 @@ cursor = connection.cursor()
 
 
 Command = """
-SELECT COMPANY.name as company_name, JOB.title as job_title, avg_salary, avg_rating
+SELECT COMPANY.name as company_name, JOB.title as job_title,
+IFNULL(avg_salary, "missing") as avg_salary, IFNULL(avg_rating, "missing") as avg_rating
 FROM JOB
 LEFT OUTER JOIN COMPANY
 ON JOB.cid = COMPANY.cid
