@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ThankMrGoose
+      MYSQL_DATABASE: coop_mmr
+    volumes:
+      - ./sql_scripts/create_tables.sql:/docker-entrypoint-initdb.d/01_create_tables.sql
+      - ./sql_scripts/populate_tables.sql:/docker-entrypoint-initdb.d/02_populate_tables.sql
+      - ./sql_scripts/sample_data/:/docker-entrypoint-initdb.d/sample_data/
+    ports:
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 8080:8080
