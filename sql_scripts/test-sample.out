@@ -15,7 +15,7 @@ cid	name	avg_salary
 784563758	SAP	NULL
 786564565	Alloy	NULL
 986543244	FairVentures Lab	NULL
-cid	name	avg_review
+cid	name	avg_rating
 451237655	McDonalds	5.0000
 567586557	Wish	3.0000
 135378338	Cummins	NULL
@@ -61,7 +61,7 @@ JOB PAGE
 -----Query 4------
 
 -----Browse all jobs------
-jid	company_name	job_title	avg_salary	avg_review
+jid	company_name	job_title	avg_salary	avg_rating
 443612121	Wish	Full Stack Software Engineer	67.600000	3.5000
 762136656	Wish	Mobile Developer	55.500000	2.0000
 944545544	McDonalds	Burger Flipper	22.000000	5.0000

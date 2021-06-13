@@ -14,16 +14,16 @@ ON COMPANY.cid = COMPANY_SALARY.cid
 ORDER BY COMPANY_SALARY.avg_salary DESC;
 
 -- View company review average
-SELECT COMPANY.cid, COMPANY.name, COMPANY_REVIEW.avg_review
+SELECT COMPANY.cid, COMPANY.name, COMPANY_REVIEW.avg_rating
 FROM COMPANY
 LEFT OUTER JOIN(
-    SELECT cid, AVG(rating) as avg_review
+    SELECT cid, AVG(rating) as avg_rating
     FROM REVIEW 
     WHERE rating IS NOT NULL
     GROUP BY cid
 ) AS COMPANY_REVIEW
 ON COMPANY.cid = COMPANY_REVIEW.cid 
-ORDER BY COMPANY_REVIEW.avg_review DESC;
+ORDER BY COMPANY_REVIEW.avg_rating DESC;
 
 SELECT '----------------------' AS '';
 SELECT 'COMPANY PAGE FOR EACH COMPANY' AS '';
@@ -67,7 +67,7 @@ SELECT '-----Query 4------' AS '';
 SELECT '-----Browse all jobs------' AS '';
 -- View all jobs, and their company, average salary and rating.
 
-SELECT JOB.jid, COMPANY.name as company_name, JOB.title as job_title, avg_salary, avg_review
+SELECT JOB.jid, COMPANY.name as company_name, JOB.title as job_title, avg_salary, avg_rating
 FROM JOB
 LEFT OUTER JOIN COMPANY
 ON JOB.cid = COMPANY.cid
@@ -77,7 +77,7 @@ LEFT OUTER JOIN (SELECT jid, AVG(salary) as avg_salary
                     GROUP BY jid
                 ) as JOB_SALARY
 ON JOB.jid = JOB_SALARY.jid
-LEFT OUTER JOIN (SELECT jid, AVG(rating) as avg_review
+LEFT OUTER JOIN (SELECT jid, AVG(rating) as avg_rating
                     FROM REVIEW
                     WHERE rating IS NOT NULL
                     GROUP BY jid
