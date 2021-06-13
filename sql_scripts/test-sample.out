@@ -1,0 +1,65 @@
+
+----------------------
+
+BROWSE ALL COMPANY PAGE
+
+----------------------
+cid	name	avg_salary
+567586557	Wish	63.566667
+451237655	McDonalds	22.000000
+135378338	Cummins	NULL
+357537583	Kitchen Stuff Plus	NULL
+459764577	Code With Chris	NULL
+657656756	DarwinAI	NULL
+673518883	Paphus AI	NULL
+784563758	SAP	NULL
+786564565	Alloy	NULL
+986543244	FairVentures Lab	NULL
+cid	name	avg_review
+451237655	McDonalds	5.0000
+567586557	Wish	3.0000
+135378338	Cummins	NULL
+357537583	Kitchen Stuff Plus	NULL
+459764577	Code With Chris	NULL
+657656756	DarwinAI	NULL
+673518883	Paphus AI	NULL
+784563758	SAP	NULL
+786564565	Alloy	NULL
+986543244	FairVentures Lab	NULL
+
+----------------------
+
+COMPANY PAGE FOR EACH COMPANY
+
+----------------------
+count(*)
+3
+
+----------------------
+count(*)
+3
+
+----------------------
+cid	avg(rating)
+567586557	3.0000
+
+----------------------
+cid	avg(salary)
+567586557	63.566667
+
+----------------------
+term_num	COUNT(term_num)
+4	2
+3	1
+
+----------------------
+
+LIST ALL JOBS POSTED BY THE COMPANY AND THEIR RELATED INFO
+
+INCLUDING average salary and rating
+
+----------------------
+jid	title	avg_salary	avg_review
+443612121	Full Stack Software Engineer	67.600000	3.5000
+562565621	Brand Ambassador	NULL	NULL
+762136656	Mobile Developer	55.500000	2.0000

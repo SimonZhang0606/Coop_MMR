@@ -1,79 +1,89 @@
-
-------------
--- BROWSE ALL COMPANY PAGE
-------------
-
+SELECT '----------------------' AS '';
+SELECT 'BROWSE ALL COMPANY PAGE' AS '';
+SELECT '----------------------' AS '';
 -- View company salary average
-SELECT COMPANY_SALARY.cid, COMPANY.name, COMPANY_SALARY.avg_salary
+SELECT COMPANY.cid, COMPANY.name, COMPANY_SALARY.avg_salary
 FROM COMPANY 
 LEFT OUTER JOIN (
     SELECT cid, AVG(salary) as avg_salary
     FROM PLACEMENT
+    WHERE salary IS NOT NULL
     GROUP BY cid
 ) AS COMPANY_SALARY
 ON COMPANY.cid = COMPANY_SALARY.cid
-ORDER BY COMPANY_SALARY.avg_salary DESC 
+ORDER BY COMPANY_SALARY.avg_salary DESC;
 
 -- View company review average
-SELECT COMPANY_REVIEW.cid, COMPANY.name, COMPANY_REVIEW.avg_review
+SELECT COMPANY.cid, COMPANY.name, COMPANY_REVIEW.avg_review
 FROM COMPANY
 LEFT OUTER JOIN(
     SELECT cid, AVG(rating) as avg_review
     FROM REVIEW 
+    WHERE rating IS NOT NULL
     GROUP BY cid
 ) AS COMPANY_REVIEW
 ON COMPANY.cid = COMPANY_REVIEW.cid 
-ORDER BY COMPANY_REVIEW.avg_review DESC 
+ORDER BY COMPANY_REVIEW.avg_review DESC;
 
-------------
--- COMPANY PAGE FOR EACH COMPANY
-------------
+
+SELECT '----------------------' AS '';
+SELECT 'COMPANY PAGE FOR EACH COMPANY' AS '';
+SELECT '----------------------' AS '';
 
 -- VIEW NUMBER OF JOBS POSTED BY COMPANY
 SELECT count(*) 
 FROM JOB
-WHERE JOB.cid = search_input
+WHERE JOB.cid = 567586557;
 
+SELECT '----------------------' AS '';
 -- VIEW NUMBER OF PLACEMENTS POSTED BY COMPANY 
 SELECT count(*) 
 FROM PLACEMENT
-WHERE PLACEMENT.cid = search_input
+WHERE PLACEMENT.cid = 567586557;
 
+SELECT '----------------------' AS '';
 -- VIEW AVERAGE RATING OF THE COMPANY
-SELECT avg(rating)
+SELECT cid, avg(rating)
 from REVIEW 
-GROUP BY cid
-WHERE cid = search_input
+WHERE cid = 567586557
+GROUP BY cid;
 
+SELECT '----------------------' AS '';
 -- VIEW AVERAGE SALARY OF THE COMPANY
-SELECT avg(salary)
+SELECT cid, avg(salary)
 from PLACEMENT
-GROUP BY cid
-WHERE cid = search_input
+WHERE cid = 567586557
+GROUP BY cid;
 
+SELECT '----------------------' AS '';
 -- VIEW TERMS HIRED BY COMPANY 
 SELECT term_num, COUNT(term_num)
 FROM (SELECT * 
         FROM PLACEMENT
-        WHERE cid = search_input
-    )
-GROUP BY term_num
+        WHERE cid = 567586557
+    ) as PLACES
+GROUP BY term_num;
 
--- LIST ALL JOBS POSTED BY THE COMPANY AND THEIR RELATED INFO
--- INCLUDING average salary and rating
-SELECT avg_salary, avg_review
+SELECT '----------------------' AS '';
+SELECT 'LIST ALL JOBS POSTED BY THE COMPANY AND THEIR RELATED INFO' AS '';
+SELECT 'INCLUDING average salary and rating' AS '';
+SELECT '----------------------' AS '';
+
+SELECT JOB.jid, title, avg_salary, avg_review
 FROM JOB
-RIGHT OUTER JOIN (SELECT jid, AVG(salary) as avg_salary
+LEFT OUTER JOIN (SELECT jid, AVG(salary) as avg_salary
                     FROM PLACEMENT
+                    WHERE salary IS NOT NULL
                     GROUP BY jid
                 ) as JOB_SALARY
 ON JOB.jid = JOB_SALARY.jid
-RIGHT OUTER JOIN (SELECT jid, AVG(rating) as avg_review
+LEFT OUTER JOIN (SELECT jid, AVG(rating) as avg_review
                     FROM REVIEW
+                    WHERE rating IS NOT NULL
                     GROUP BY jid
                 ) as JOB_RATING
 ON JOB.jid = JOB_RATING.jid
-WHERE cid = search_input
+WHERE cid = 567586557;
 
 -- Note that the rating calculation is a little bit more complicated 
 -- than a simple SQL query so for space purposes we will not be including 

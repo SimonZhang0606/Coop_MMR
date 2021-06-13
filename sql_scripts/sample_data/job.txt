@@ -1,5 +1,5 @@
 567586557	762136656	1500	Mobile Developer
-451237655	923451852	1500	Multi-Level Marketing Intern	McDonalds
+451237655	923451852	1500	Multi-Level Marketing Intern
 567586557	562565621	1500	Brand Ambassador
 657656756	458845544	1500	Data Associate
 784563758	841215455	1500	Reverse paid software intern
