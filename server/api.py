@@ -14,8 +14,8 @@ def list_jobs(connection):
         JOB.jid as jid,
         COMPANY.name as company_name,
         JOB.title as job_title,
-        IFNULL(avg_salary, "missing") as avg_salary,
-        IFNULL(avg_rating, "missing") as avg_rating
+        avg_salary,
+        avg_rating
     FROM JOB
     LEFT OUTER JOIN COMPANY
         ON JOB.cid = COMPANY.cid
@@ -36,13 +36,15 @@ def list_jobs(connection):
 
     for job in cursor.fetchall():
         jid, company_name, job_title, avg_salary, avg_rating = job
-        yield {
-            "jid": int(jid),
-            "company_name": str(company_name),
-            "job_title": str(job_title),
-            "avg_salary": float(avg_salary),
-            "avg_rating": float(avg_rating),
+        job_dict = {
+            'jid': int(jid),
+            'company_name': str(company_name),
+            'job_title': str(job_title),
         }
+        if avg_salary is not None:
+            job_dict['avg_salary'] = float(avg_salary)
+        if avg_rating is not None:
+            job_dict['avg_rating'] = float(avg_rating)
 
 
 if __name__ == '__main__':
@@ -64,7 +66,7 @@ if __name__ == '__main__':
     app = Flask(__name__)
     CORS(app)
 
-    app.config["DEBUG"] = True
+    app.config['DEBUG'] = True
 
     @app.route('/jobs', methods=['GET'])
     def home():
