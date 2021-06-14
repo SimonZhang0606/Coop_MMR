@@ -20,3 +20,28 @@ services:
     restart: unless-stopped
     ports:
       - 8080:8080
+
+  server:
+    build:
+      context: ./server
+    restart: unless-stopped
+    environment:
+      FLASK_ENV: development
+      DB_HOST: host.docker.internal
+      DB_USER: root
+      DB_PASSWORD: ThankMrGoose
+      DB_DATABASE: coop_mmr
+    ports:
+      - 5000:5000
+    volumes:
+      - ./server/src/:/app/src/
+
+  web:
+    build:
+      context: ./web
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - ./web/public/:/app/public/
+      - ./web/src/:/app/src/

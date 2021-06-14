@@ -1,5 +1,5 @@
-import argparse
 import json
+from os import environ
 from pprint import pprint
 from flask import Flask
 from flask_cors import CORS
@@ -48,33 +48,30 @@ def list_jobs(connection):
         yield job_dict
 
 
+host = environ.get('DB_HOST')
+user = environ.get('DB_USER')
+password = environ.get('DB_PASSWORD')
+database = environ.get('DB_DATABASE')
+
+connection = mysql.connector.connect(
+    host=host,
+    user=user,
+    password=password,
+    database=database,
+)
+
+app = Flask(__name__)
+CORS(app)
+
+app.config['DEBUG'] = True
+
+
+@app.route('/jobs', methods=['GET'])
+def home():
+    jobs_list = list(list_jobs(connection))
+    return json.dumps(jobs_list)
+
+
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--host', type=str, default='localhost')
-    parser.add_argument('--user', type=str, default='root')
-    parser.add_argument('--password', type=str, default='ThankMrGoose')
-    parser.add_argument('--database', type=str, default='coop_mmr')
-    args = parser.parse_args()
-
-    print(args)
-    connection = mysql.connector.connect(
-        host=args.host,
-        user=args.user,
-        password=args.password,
-        database=args.database,
-    )
-
-    app = Flask(__name__)
-    CORS(app)
-
-    app.config['DEBUG'] = True
-
-    @app.route('/jobs', methods=['GET'])
-    def home():
-        jobs_list = list(list_jobs(connection))
-        pprint(jobs_list)
-        return json.dumps(jobs_list)
-
     app.run()
-
     connection.close()

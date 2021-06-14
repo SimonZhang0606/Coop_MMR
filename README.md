@@ -1,21 +1,47 @@
 # Co-op MMR
 
-<!-- ## Quick Start - Docker
+Co-op MMR is a place for University of Waterloo students to look up and compare co-op jobs.
 
-1. Run `docker-compose up`.
-1. Visit http://localhost:8080/?server=db&username=root&db=coop_mmr to check out the DB with Adminer. When prompted for a login, use the username `root` and password `ThankMrGoose`. -->
+## Quick Start with Docker
 
-## Web App
+This is the quickest and easiest way to get everything set up – all you need to install is [Docker](https://www.docker.com/).
 
-1. From the ./web folder, run `npm install` to install dependencies/modules.
-2. Run `npm start`.
+> Unfortunately, Docker does not run on all systems. Follow [Getting Started without Docker](#getting-started-without-docker) if you cannot install Docker.
 
-## Web Server
+1. Run `docker compose up`.
+1. Visit http://localhost:5000/jobs to see the demo endpoint in action.
+1. Visit http://localhost:3000/ to see the demo frontend in action.
 
-1. In `./server` folder, run `python api.py --password CS348isgreat --database appDB`.
+To look into the database, visit http://localhost:8080/?server=db&username=root&db=coop_mmr to check out the DB in Adminer. When prompted for a login, use the username `root` and password `ThankMrGoose`.
 
-## Creating and Populating DB
+## Getting Started without Docker
 
-1. Go to `sql_scripts`.
-1. To create schemas , run `mysql -u root appDB < ./create_tables.sql`.
-1. To populate schemas, run `mysql -u root appDB < ./populate_tables.sql`.
+### Creating and Populating DB
+
+1. Go to the `sql_scripts` folder.
+1. Run `mysql -u root appDB < ./create_tables.sql` to create the table schemas.
+1. Run `mysql -u root appDB < ./populate_tables.sql` to populate the tables with mock data.
+
+### Web App
+
+1. Go to the `web` folder.
+1. Run `npm install` to install dependencies.
+1. Run `npm start`.
+
+### Web Server
+
+1. Go to the `server` folder.
+1. _Optional, but recommended_: Set up and activate a [Python virtual envrionment](https://docs.python.org/3/library/venv.html).
+1. Run `pip install -r requirements.txt` to install dependencies.
+1. Go to the `src` folder inside `server`.
+1. Set the environment variables outlined in [Web Server Configuration](#web-server-configuration).
+1. Run `python -m flask run --port=5000`.
+
+#### Web Server Configuration
+
+| Variable    | Description                                  | Example Value  |
+| ----------- | -------------------------------------------- | -------------- |
+| DB_HOST     | the database host                            | `localhost`    |
+| DB_USER     | the user to connect with                     | `root`         |
+| DB_PASSWORD | the password for `DB_USER`                   | `ThankMrGoose` |
+| DB_DATABASE | the database containing the Co-op MMR tables | `appDB`        |
