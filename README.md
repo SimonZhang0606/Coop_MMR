@@ -2,6 +2,8 @@
 
 Co-op MMR is a place for University of Waterloo students to look up and compare co-op jobs.
 
+Currently, the code here supports only the Browse Jobs page (Feature 4 in the report).
+
 ## Quick Start with Docker
 
 This is the quickest and easiest way to get everything set up – all you need to install is [Docker](https://www.docker.com/).
