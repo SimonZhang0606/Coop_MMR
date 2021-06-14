@@ -1,14 +1,16 @@
 import React from 'react';
 
 export default class Jobs extends React.Component {
-  jobs = []
+  state = {
+    jobs: []
+  }
 
   // Fetch jobs
   componentDidMount() {
     fetch("http://localhost:5000/jobs")
       .then(response => response.json())
       .then(result => {
-        this.jobs = result
+        this.setState({jobs: result})
       })
       .catch(e => {
         console.log(e);
@@ -16,7 +18,7 @@ export default class Jobs extends React.Component {
   }
 
   tableRows() {
-    return this.jobs.map(j => (
+    return this.state.jobs.map(j => (
       <tr>
         <td>{j.job_title}</td>
         <td>{j.company_name}</td>
