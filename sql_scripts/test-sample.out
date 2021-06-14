@@ -1,66 +1,29 @@
 
----------Query 1---------
+Query 1: Browse Companies page
+cid	name	avg_salary	avg_rating
+135378338	Cummins	NULL	NULL
+357537583	Kitchen Stuff Plus	NULL	NULL
+451237655	McDonalds	22.000000	5.0000
+459764577	Code With Chris	NULL	NULL
+567586557	Wish	63.566667	3.0000
+657656756	DarwinAI	NULL	NULL
+673518883	Paphus AI	NULL	NULL
+784563758	SAP	NULL	NULL
+786564565	Alloy	NULL	NULL
+986543244	FairVentures Lab	NULL	NULL
 
-BROWSE ALL COMPANIES PAGE
-
-----------------------
-cid	name	avg_salary
-567586557	Wish	63.566667
-451237655	McDonalds	22.000000
-135378338	Cummins	NULL
-357537583	Kitchen Stuff Plus	NULL
-459764577	Code With Chris	NULL
-657656756	DarwinAI	NULL
-673518883	Paphus AI	NULL
-784563758	SAP	NULL
-786564565	Alloy	NULL
-986543244	FairVentures Lab	NULL
-cid	name	avg_rating
-451237655	McDonalds	5.0000
-567586557	Wish	3.0000
-135378338	Cummins	NULL
-357537583	Kitchen Stuff Plus	NULL
-459764577	Code With Chris	NULL
-657656756	DarwinAI	NULL
-673518883	Paphus AI	NULL
-784563758	SAP	NULL
-786564565	Alloy	NULL
-986543244	FairVentures Lab	NULL
-
-----------------------
-
-COMPANY PAGE FOR EACH COMPANY
-
-----------------------
-
--------Query 2--------
-
-LIST ALL JOBS POSTED BY THE COMPANY AND THEIR RELATED INFO
-
-INCLUDING average salary and rating
-
-----------------------
+Query 2: list all jobs posted by a company
 jid	title	avg_salary	avg_review
 443612121	Full Stack Software Engineer	67.600000	3.5000
 562565621	Brand Ambassador	NULL	NULL
 762136656	Mobile Developer	55.500000	2.0000
 
------Query 3------
-
------TERMS HIRED BY COMPANY------
-term_num	COUNT(term_num)
+Query 3: breakdown number of students hired by student term number
+term_num	hires
 4	2
 3	1
 
-----------------------
-
-JOB PAGE
-
-----------------------
-
------Query 4------
-
------Browse all jobs------
+Query 4: Browse Jobs page
 jid	company_name	job_title	avg_salary	avg_rating
 443612121	Wish	Full Stack Software Engineer	67.600000	3.5000
 762136656	Wish	Mobile Developer	55.500000	2.0000
@@ -71,11 +34,7 @@ jid	company_name	job_title	avg_salary	avg_rating
 841215455	SAP	Reverse paid software intern	NULL	NULL
 923451852	McDonalds	Multi-Level Marketing Intern	NULL	NULL
 
-----------------------
-
------Query 5------
-
------Search job by tag------
+Query 5: search job by tag
 jid	title
 443612121	Full Stack Software Engineer
 455612155	Full Stack Software Engineer

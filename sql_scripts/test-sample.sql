@@ -19,7 +19,7 @@ LEFT OUTER JOIN(
     WHERE rating IS NOT NULL
     GROUP BY cid
 ) AS COMPANY_REVIEW
-ON COMPANY.cid = COMPANY_REVIEW.cid
+ON COMPANY.cid = COMPANY_REVIEW.cid;
 
 
 SELECT 'Query 2: list all jobs posted by a company' AS '';
