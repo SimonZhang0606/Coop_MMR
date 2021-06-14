@@ -19,7 +19,7 @@ export default class Jobs extends React.Component {
 
   tableRows() {
     return this.state.jobs.map((j) => (
-      <tr>
+      <tr key={`jobs-${j}`}>
         <td>{j.job_title}</td>
         <td>{j.company_name}</td>
         <td>{j.avg_salary}</td>
