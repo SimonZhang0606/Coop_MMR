@@ -1,6 +1,8 @@
-import flask
-import json
 import argparse
+import json
+from pprint import pprint
+from flask import Flask
+from flask_cors import CORS
 import mysql.connector
 
 
@@ -47,12 +49,16 @@ if __name__ == '__main__':
         database=args.database,
     )
 
-    app = flask.Flask(__name__)
+    app = Flask(__name__)
+    CORS(app)
+
     app.config["DEBUG"] = True
 
     @app.route('/jobs', methods=['GET'])
     def home():
-        return json.dumps(list_jobs(connection))
+        jobs_list = list_jobs(connection)
+        pprint(jobs_list)
+        return json.dumps(jobs_list)
 
     app.run()
 
