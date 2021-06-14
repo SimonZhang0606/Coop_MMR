@@ -1,7 +1,19 @@
 import React from 'react';
 
 export default class Jobs extends React.Component {
-  jobs = [{job_title: 'Full-Stack Software Developer', company_name: 'SAP', avg_salary: '55.5', avg_rating: '3'}]
+  jobs = []
+
+  // Fetch jobs
+  componentDidMount() {
+    fetch("http://localhost:5000/jobs")
+      .then(response => response.json())
+      .then(result => {
+        this.jobs = result
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
 
   tableRows() {
     return this.jobs.map(j => (
