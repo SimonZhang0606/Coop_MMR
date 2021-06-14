@@ -45,6 +45,7 @@ def list_jobs(connection):
             job_dict['avg_salary'] = float(avg_salary)
         if avg_rating is not None:
             job_dict['avg_rating'] = float(avg_rating)
+        yield job_dict
 
 
 if __name__ == '__main__':
