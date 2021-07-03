@@ -4,10 +4,10 @@ import mysql.connector
 
 import uuid
 
+import hashlib
 from pprint import pprint
 
-TABLE_NAME = 'STUDENT'
-
+HASH_DIGIT_NUM = 9
 
 def get_uuid():
     return str(uuid.uuid4())
@@ -25,6 +25,8 @@ def insert_student(name, term_data):
     insert_command = 'INSERT INTO {0} (PID, SID, CID, Title, StartMonth, StartYear, EndMonth, EndYear'.format(
         TABLE_NAME)
 
+def hash_string(s, digit_num):
+    return int(hashlib.sha256(s.encode('utf-8')).hexdigest(), 16) % 10 ** digit_num
 
 api = Linkedin(email, pwd)
 
@@ -34,7 +36,38 @@ for username in usernames:
     profile = api.get_profile(username)
     # pprint(profile)
 
-    experience = []
-    for term in profile['experience']:
+    # student
+    student_name = "{} {}".format(profile['firstName'], profile['lastName'])
+    sid = hash_string(student_name, HASH_DIGIT_NUM)
+    program = profile['education'][0]['degreeName']
 
-        term_data = [term['companyName'], term['title'], term['timePeriod']]
+    try:
+        enrol_date, grad_date = profile['education'][0]['timePeriod']['startDate']['year'], profile['education'][0]['timePeriod']['endDate']['year']
+    except Exception as e:
+        print('{}: Missing data for education. Record omitted.'.format(student_name))
+        continue
+
+    student_tsv = "{}\t{}\t{}\t{}\t{}".format(sid, student_name, program, enrol_date, grad_date)
+
+    print(student_tsv)
+
+    for i, term in enumerate(profile['experience']):
+        
+        # company
+        company_name = term['companyName']
+        cid = hash_string(company_name, HASH_DIGIT_NUM)
+        company_tsv = "{}\t{}".format(cid, company_name)
+
+        print(company_tsv)
+
+        # job
+        job_title = term['title']
+        jid = hash_string(str(cid) + job_title, HASH_DIGIT_NUM)
+        job_tsv = "{}\t{}\t{}\t{}".format(cid, jid, 1500, job_title)
+
+        print(job_tsv)
+
+        # placement
+        
+
+    break
