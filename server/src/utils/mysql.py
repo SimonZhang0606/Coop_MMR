@@ -91,7 +91,10 @@ class _wrapnamedtuple:
         return self._Row(self._cursor.__next__())
 
 
-def open_connection(max_tries=4, base_sleep_seconds=1.0):
+def connect_db(max_tries=4, base_sleep_seconds=1.0):
+    """
+    Tries to connect to the database with increasing delays in between.
+    """
     host = environ.get('DB_HOST')
     user = environ.get('DB_USER')
     password = environ.get('DB_PASSWORD')
