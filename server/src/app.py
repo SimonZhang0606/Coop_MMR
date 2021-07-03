@@ -4,9 +4,43 @@ from flask import Flask, request
 from flask_cors import CORS
 import mysql.connector
 
-from utils.mysql import open_connection, get_cursor
+from utils.mysql import connect_db, get_cursor
 from utils.serialization import serialize
 from queries import *
+
+
+def aggregate_companies(cursor):
+    cursor.execute(AGGREGATE_COMPANIES)
+    for company in cursor:
+        print(company)
+        yield {
+            'cid': serialize(company.cid, as_type=int),
+            'name': company.name,
+            'avg_salary': serialize(company.avg_salary, as_type=float, nullable=True),
+            'avg_rating': serialize(company.avg_rating, as_type=float, nullable=True),
+        }
+
+
+def jobs_by_company(cursor, cid):
+    cursor.execute(JOBS_BY_COMPANY, (cid,))
+    for job in cursor:
+        print(job)
+        yield {
+            'jid': serialize(job.jid, as_type=int),
+            'title': job.title,
+            'avg_salary': serialize(job.avg_salary, as_type=float, nullable=True),
+            'avg_review': serialize(job.avg_review, as_type=float, nullable=True),
+        }
+
+
+def students_hired_by_term(cursor, cid):
+    cursor.execute(STUDENTS_HIRED_BY_TERM, (cid,))
+    for term in cursor:
+        print(term)
+        yield {
+            'term_num': serialize(term.term_num, as_type=int),
+            'hires': serialize(term.hires, as_type=int),
+        }
 
 
 def aggregate_jobs(cursor):
@@ -37,17 +71,34 @@ app = Flask(__name__)
 CORS(app)
 app.config['DEBUG'] = True
 
-connection = open_connection()
+connection = connect_db()
+
+
+@app.route('/companies', methods=['GET'])
+def companies():
+    with get_cursor(connection) as cursor:
+        res = list(aggregate_companies(cursor))
+        return json.dumps(res)
+
+
+@app.route('/companies/<cid>', methods=['GET'])
+def company(cid):
+    with get_cursor(connection) as cursor:
+        res = {
+            'jobs': list(jobs_by_company(cursor, cid)),
+            'hires_by_term': list(students_hired_by_term(cursor, cid)),
+        }
+        return json.dumps(res)
 
 
 @app.route('/jobs', methods=['GET'])
 def jobs():
     with get_cursor(connection) as cursor:
         if tag := request.args.get('tag', None):
-            jobs = list(jobs_by_tag(cursor, tag))
+            res = list(jobs_by_tag(cursor, tag))
         else:
-            jobs = list(aggregate_jobs(cursor))
-        return json.dumps(jobs)
+            res = list(aggregate_jobs(cursor))
+        return json.dumps(res)
 
 
 if __name__ == '__main__':
