@@ -24,6 +24,8 @@ services:
   server:
     build:
       context: ./server
+    depends_on:
+      - db
     restart: unless-stopped
     environment:
       FLASK_ENV: development
@@ -37,6 +39,8 @@ services:
       - ./server/src/:/app/src/
 
   web:
+    depends_on:
+      - server
     build:
       context: ./web
     restart: unless-stopped
