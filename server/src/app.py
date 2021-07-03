@@ -2,9 +2,8 @@ import json
 
 from flask import Flask, request
 from flask_cors import CORS
-import mysql.connector
 
-from utils.mysql import connect_db, get_cursor
+from utils.db import DB
 from utils.serialization import serialize
 from queries import *
 
@@ -71,19 +70,17 @@ app = Flask(__name__)
 CORS(app)
 app.config['DEBUG'] = True
 
-connection = connect_db()
-
 
 @app.route('/companies', methods=['GET'])
 def companies():
-    with get_cursor(connection) as cursor:
+    with DB.get_cursor() as cursor:
         res = list(aggregate_companies(cursor))
         return json.dumps(res)
 
 
 @app.route('/companies/<cid>', methods=['GET'])
 def company(cid):
-    with get_cursor(connection) as cursor:
+    with DB.get_cursor() as cursor:
         res = {
             'jobs': list(jobs_by_company(cursor, cid)),
             'hires_by_term': list(students_hired_by_term(cursor, cid)),
@@ -93,7 +90,7 @@ def company(cid):
 
 @app.route('/jobs', methods=['GET'])
 def jobs():
-    with get_cursor(connection) as cursor:
+    with DB.get_cursor() as cursor:
         if tag := request.args.get('tag', None):
             res = list(jobs_by_tag(cursor, tag))
         else:
