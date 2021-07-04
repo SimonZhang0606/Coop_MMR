@@ -35,28 +35,27 @@ WHERE jid = %s;
 
 ALL_JOB_DETAILS_FOR_TAG = """
 SELECT *
-    JOB_DETAILS.cid,
-    company_name,
-    JOB_DETAILS.jid,
-    job_mmr,
-    job_title,
-    company_min_salary,
-    company_avg_salary,
-    company_max_salary,
-    company_avg_rating,
-    job_min_salary,
-    job_avg_salary,
-    job_max_salary,
-    job_avg_rating
 FROM JOB_TAG
-JOIN TAG
-ON JOB_TAG.tid = TAG.tid
-JOIN JOB_DETAILS
-ON JOB_TAG.jid = JOB_DETAILS.jid
+NATURAL JOIN TAG
+NATURAL JOIN JOB_DETAILS
 WHERE TAG.label = %s;
 """
 
 ALL_TAGS = """
 SELECT tid, label
 FROM TAG
+"""
+
+ALL_TAGS_FOR_JID = """
+SELECT *
+FROM JOB_TAG
+NATURAL JOIN TAG
+NATURAL JOIN JOB
+WHERE jid = %s;
+"""
+
+ALL_REVIEWS_FOR_JID = """
+SELECT *
+FROM REVIEW
+WHERE jid = %s;
 """

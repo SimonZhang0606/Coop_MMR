@@ -66,6 +66,15 @@ serialize_job_details = serializer({
     'job_avg_rating': nullable(rating),
 })
 
+serialize_review = serializer({
+    'cid': non_null(id_num),
+    'jid': non_null(id_num),
+    'rid': non_null(id_num),
+    'headline': non_null(string),
+    'review_body': non_null(string),
+    'rating': nullable(rating),
+})
+
 serialize_tag = serializer({
     'tid': non_null(string),
     'label': non_null(string),
