@@ -68,15 +68,8 @@ matches_result = [] #list of [cid, cid], where the first company is "better" tha
 
 placement_tsv = ""
 
-if (TESTING):
-    counter = 1
 
 for user_idx, username in enumerate(usernames):
-    if (TESTING):
-        if counter > 2:
-            break
-        else: 
-            counter= counter +1 
 
     profile = api.get_profile(username)
 
@@ -113,7 +106,7 @@ for user_idx, username in enumerate(usernames):
             if company_name not in company_hash:
                 cid = hash_string(company_name, HASH_DIGIT_NUM)
                 company_hash[company_name] = cid
-                company_output.append("{}\t{}\n".format(cid, company_name))
+                company_output.append([cid, company_name])
                 company_elo_hash[cid] = [company_name, cid, 1500]
 
             # job
@@ -121,7 +114,7 @@ for user_idx, username in enumerate(usernames):
             if (job_title, company_name) not in fjob_hash:
                 jid = hash_string(str(cid) + job_title, HASH_DIGIT_NUM)
                 fjob_hash[(job_title, company_name)] = jid
-                fjob_output.append("{}\t{}\t{}\t{}\n".format(cid,jid, 1500, job_title))
+                fjob_output.append("{}\t{}\t{}\n".format(cid,jid, job_title))
 
             # placement
             salary = -1 # TODO: determine it later
@@ -149,15 +142,12 @@ for user_idx, username in enumerate(usernames):
                         matches_result.append([info[0], info[2], company_name, cid])
                         
                 match_temp[company_name] = [company_name, start_date, cid]
-
-       
             
         except Exception as e:
             print('{}: Missing data for a job. Job omitted.'.format(student_name))
             
         fplacement.write(placement_tsv)    
 
-print(company_elo_hash)
 #calculate mmr rating 
 def Probability(rating1, rating2):
      return 1.0 * 1.0 / (1 + 1.0 * math.pow(10, 1.0 * (rating1 - rating2) / 400))
@@ -175,25 +165,22 @@ for match in matches_result:
     company_elo_hash[match[1]] = [c1[0], c1[1], mmr_1]
     company_elo_hash[match[3]] = [c2[0], c2[1], mmr_2]
 
-    
-print(company_elo_hash)
 
-for i in company_output:
-    
+for company in company_output:
 
-
-for company_tsv in  company_output:
+    company_tsv = "{}\t{}\t{}\n".format(cid, company[1],company_elo_hash[company[0]][2])
     fcompany.write(company_tsv)
+
 
 for job_tsv in fjob_output:
     fjob.write(job_tsv)
 
 
-    
 fcompany.close()
 fstudent.close()
 fjob.close()
 fplacement.close()
+
 
 
 
