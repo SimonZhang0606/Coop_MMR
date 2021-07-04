@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, request
+from flask import Flask, request, abort
 from flask_cors import CORS
 
 from utils.db import DB
@@ -20,7 +20,7 @@ def company_details_for_cid(cursor, cid):
     cursor.execute(COMPANY_DETAILS_FOR_CID, (cid,))
     cd = cursor.fetchone()
     print(cd)
-    return serialize_company_details(cd)
+    return None if cd is None else serialize_company_details(cd)
 
 
 def all_job_details_for_cid(cursor, cid):
@@ -54,7 +54,7 @@ def job_details_for_jid(cursor, jid):
     cursor.execute(JOB_DETAILS_FOR_JID, (jid,))
     jd = cursor.fetchone()
     print(jd)
-    return serialize_job_details(jd)
+    return None if jd is None else serialize_job_details(jd)
 
 
 def all_job_details_for_tag(cursor, tag):
@@ -90,6 +90,8 @@ def GET_companies():
 def GET_companies_cid(cid):
     with DB.get_cursor() as cursor:
         company_details = company_details_for_cid(cursor, cid)
+        if company_details is None:
+            abort(404)
         job_details = list(all_job_details_for_cid(cursor, cid))
         hires_by_term = list(hires_by_term_for_cid(cursor, cid))
     return {
@@ -115,6 +117,8 @@ def GET_jobs():
 def GET_jobs_jid(jid):
     with DB.get_cursor() as cursor:
         job_details = job_details_for_jid(cursor, jid)
+        if job_details is None:
+            abort(404)
     return job_details
 
 

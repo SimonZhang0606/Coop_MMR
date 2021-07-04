@@ -34,7 +34,7 @@ WHERE jid = %s;
 """
 
 ALL_JOB_DETAILS_FOR_TAG = """
-SELECT
+SELECT *
     JOB_DETAILS.cid,
     company_name,
     JOB_DETAILS.jid,

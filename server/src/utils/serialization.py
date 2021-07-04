@@ -43,6 +43,7 @@ def serializer(schema):
 serialize_company_details = serializer({
     'cid': non_null(id_num),
     'company_name': non_null(string),
+    'company_mmr': non_null(mmr),
     'company_min_salary': nullable(money),
     'company_avg_salary': nullable(money),
     'company_max_salary': nullable(money),
@@ -52,8 +53,8 @@ serialize_company_details = serializer({
 serialize_job_details = serializer({
     'cid': non_null(id_num),
     'company_name': non_null(string),
+    'company_mmr': non_null(mmr),
     'jid': non_null(id_num),
-    'job_mmr': non_null(mmr),
     'job_title': non_null(string),
     'company_min_salary': nullable(money),
     'company_avg_salary': nullable(money),

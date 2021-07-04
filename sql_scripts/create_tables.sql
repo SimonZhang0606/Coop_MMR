@@ -96,6 +96,7 @@ CREATE VIEW COMPANY_DETAILS AS
 SELECT
     COMPANY.cid,
     COMPANY.name AS company_name,
+    COMPANY.mmr AS company_mmr,
     company_min_salary,
     company_avg_salary,
     company_max_salary,
@@ -126,6 +127,7 @@ CREATE VIEW JOB_DETAILS AS
 SELECT
     JOB.cid,
     COMPANY_DETAILS.company_name,
+    COMPANY_DETAILS.company_mmr,
     JOB.jid,
     JOB.title AS job_title,
     COMPANY_DETAILS.company_min_salary,
@@ -163,4 +165,4 @@ ON JOB.jid = JOB_REVIEW.jid;
 
 -- INDEXES
 
-CREATE UNIQUE INDEX tag_label ON TAG(label);
+CREATE UNIQUE INDEX TAG_LABEL ON TAG(label);

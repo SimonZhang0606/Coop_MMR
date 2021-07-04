@@ -44,6 +44,8 @@ class _wrapnamedtuple:
     def fetchone(self, *args, **kwargs):
         row = self._cursor.fetchone(*args, **kwargs)
         # print(row)
+        if row is None:
+            return None
         self._Row = self._row_builder()
         return self._Row(row)
 
