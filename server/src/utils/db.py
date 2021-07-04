@@ -42,16 +42,22 @@ class _wrapnamedtuple:
         return self._cursor.executemany(*args, **kwargs)
 
     def fetchone(self, *args, **kwargs):
+        row = self._cursor.fetchone(*args, **kwargs)
+        # print(row)
         self._Row = self._row_builder()
-        return self._Row(self._cursor.fetchone(*args, **kwargs))
+        return self._Row(row)
 
     def fetchall(self, *args, **kwargs):
+        rows = self._cursor.fetchall(*args, **kwargs)
+        # print(rows)
         self._Row = self._row_builder()
-        return [self._Row(r) for r in self._cursor.fetchall(*args, **kwargs)]
+        return [self._Row(row) for row in rows]
 
     def fetchmany(self, *args, **kwargs):
+        rows = self._cursor.fetchmany(*args, **kwargs)
+        # print(rows)
         self._Row = self._row_builder()
-        return [self._Row(r) for r in self._cursor.fetchmany(*args, **kwargs)]
+        return [self._Row(row) for row in rows]
 
     def fetchwarnings(self, *args, **kwargs):
         return self._cursor.fetchwarnings(*args, **kwargs)
@@ -88,7 +94,9 @@ class _wrapnamedtuple:
         return self
 
     def __next__(self):
-        return self._Row(self._cursor.__next__())
+        nxt = self._cursor.__next__()
+        # print(nxt)
+        return self._Row(nxt)
 
 
 class DB:
