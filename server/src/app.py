@@ -4,7 +4,7 @@ from flask import Flask, request
 from flask_cors import CORS
 
 from utils.db import DB
-from utils.serialization import serialize, serialize_company_details, serialize_job_details, serialize_tag
+from utils.serialization import serialize_company_details, serialize_job_details, serialize_tag
 from queries import *
 
 
@@ -37,8 +37,8 @@ def hires_by_term_for_cid(cursor, cid):
     for term in cursor:
         print(term)
         yield {
-            'term_num': serialize(term.term_num, as_type=int),
-            'hires': serialize(term.hires, as_type=int),
+            'term_num': int(term.term_num),
+            'hires': int(term.hires),
         }
 
 

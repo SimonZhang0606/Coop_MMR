@@ -1,33 +1,71 @@
-def serialize(x, as_type=None, nullable=False):
-    if nullable:
-        return None if x is None else as_type(x)
-    else:
+def id_num(x):
+    return int(x)
+
+
+def mmr(x):
+    return int(x)
+
+
+def money(x):
+    return round(float(x), 2)
+
+
+def rating(x):
+    return round(float(x), 1)
+
+
+def string(x):
+    return str(x)
+
+
+def nullable(serializer):
+    def serialize(x):
+        return None if x is None else serializer(x)
+    return serialize
+
+
+def non_null(serializer):
+    def serialize(x):
         assert(x is not None)
-        return as_type(x)
+        return serializer(x)
+    return serialize
 
 
-def serialize_company_details(cd):
-    return {
-        'cid': serialize(cd.cid, as_type=int),
-        'name': cd.name,
-        'avg_salary': serialize(cd.avg_salary, as_type=float, nullable=True),
-        'avg_rating': serialize(cd.avg_rating, as_type=float, nullable=True),
-    }
+def serializer(schema):
+    def serialize(x):
+        return {
+            key: ser(getattr(x, key))
+            for key, ser in schema.items()
+        }
+    return serialize
 
 
-def serialize_job_details(jd):
-    return {
-        'cid': serialize(jd.cid, as_type=int),
-        'jid': serialize(jd.jid, as_type=int),
-        'company_name': jd.company_name,
-        'job_title': jd.job_title,
-        'avg_salary': serialize(jd.avg_salary, as_type=float, nullable=True),
-        'avg_rating': serialize(jd.avg_rating, as_type=float, nullable=True),
-    }
+serialize_company_details = serializer({
+    'cid': non_null(id_num),
+    'company_name': non_null(string),
+    'company_min_salary': nullable(money),
+    'company_avg_salary': nullable(money),
+    'company_max_salary': nullable(money),
+    'company_avg_rating': nullable(rating),
+})
 
+serialize_job_details = serializer({
+    'cid': non_null(id_num),
+    'company_name': non_null(string),
+    'jid': non_null(id_num),
+    'job_mmr': non_null(mmr),
+    'job_title': non_null(string),
+    'company_min_salary': nullable(money),
+    'company_avg_salary': nullable(money),
+    'company_max_salary': nullable(money),
+    'company_avg_rating': nullable(rating),
+    'job_min_salary': nullable(money),
+    'job_avg_salary': nullable(money),
+    'job_max_salary': nullable(money),
+    'job_avg_rating': nullable(rating),
+})
 
-def serialize_tag(tag):
-    return {
-        'tid': serialize(tag.tid, as_type=int),
-        'label': tag.label,
-    }
+serialize_tag = serializer({
+    'tid': non_null(string),
+    'label': non_null(string),
+})
