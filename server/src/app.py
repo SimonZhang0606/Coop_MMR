@@ -56,10 +56,12 @@ def GET_jobs_jid(jid):
             abort(404)
         reviews = list(all_reviews_for_jid(cursor, jid))
         tags = list(all_tags_for_jid(cursor, jid))
+        hires_by_term = list(hires_by_term_for_jid(cursor, jid))
     return {
         **job_details,
         'reviews': reviews,
         'tags': tags,
+        'hires_by_term': hires_by_term,
     }
 
 

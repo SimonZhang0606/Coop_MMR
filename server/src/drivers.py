@@ -36,6 +36,17 @@ def hires_by_term_for_cid(cursor, cid):
         }
 
 
+def hires_by_term_for_jid(cursor, jid):
+    print(jid)
+    cursor.execute(HIRES_BY_TERM_FOR_JID, (jid,))
+    for term in cursor:
+        print(term)
+        yield {
+            'term_num': int(term.term_num),
+            'hires': int(term.hires),
+        }
+
+
 def all_job_details(cursor):
     cursor.execute(ALL_JOB_DETAILS)
     for jd in cursor:

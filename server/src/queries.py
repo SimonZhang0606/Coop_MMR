@@ -1,6 +1,6 @@
 ALL_COMPANY_DETAILS = """
 SELECT *
-FROM COMPANY_DETAILS
+FROM COMPANY_DETAILS;
 """
 
 COMPANY_DETAILS_FOR_CID = """
@@ -16,9 +16,20 @@ WHERE cid = %s;
 """
 
 HIRES_BY_TERM_FOR_CID = """
-SELECT term_num, COUNT(term_num) as hires
+SELECT
+    term_num,
+    COUNT(term_num) as hires
 FROM PLACEMENT
 WHERE cid = %s
+GROUP BY term_num;
+"""
+
+HIRES_BY_TERM_FOR_JID = """
+SELECT
+    term_num,
+    COUNT(term_num) as hires
+FROM PLACEMENT
+WHERE jid = %s
 GROUP BY term_num;
 """
 
@@ -43,7 +54,7 @@ WHERE TAG.label = %s;
 
 ALL_TAGS = """
 SELECT tid, label
-FROM TAG
+FROM TAG;
 """
 
 ALL_TAGS_FOR_JID = """
