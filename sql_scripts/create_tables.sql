@@ -30,6 +30,7 @@ CREATE TABLE COMPANY
   (
     cid         DECIMAL(9, 0) NOT NULL,
     name        VARCHAR(30) NOT NULL,
+    mmr         INT NOT NULL,
     PRIMARY KEY (cid)
   );
 
@@ -37,7 +38,6 @@ CREATE TABLE JOB
   (
     cid         DECIMAL(9, 0) NOT NULL,
     jid         DECIMAL(9, 0) NOT NULL,
-    mmr         INT NOT NULL,
     title       TEXT NOT NULL,
     PRIMARY KEY (jid),
     FOREIGN KEY (cid) REFERENCES COMPANY(cid)
