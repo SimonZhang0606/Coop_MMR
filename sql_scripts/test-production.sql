@@ -70,7 +70,7 @@ WHERE jid = 024154801
 LIMIT 10;
 
 -- ----------------------------------------------------------------------------
--- PRODUCTION TESTS FOR TAG AND REVIEW SQUERIES - NOT IMPLEMENTED YET
+-- PRODUCTION TESTS FOR TAG AND REVIEW QUERIES - NOT IMPLEMENTED YET
 -- ----------------------------------------------------------------------------
 
 -- ALL_JOB_DETAILS_FOR_TAG

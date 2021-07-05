@@ -8,7 +8,7 @@ from drivers import *
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r'/*': {'origins': '*'}})
 app.config['DEBUG'] = True
 
 
