@@ -1,6 +1,7 @@
 ALL_COMPANY_DETAILS = """
 SELECT *
-FROM COMPANY_DETAILS;
+FROM COMPANY_DETAILS
+ORDER BY company_mmr_rank ASC, company_rating_rank ASC, company_salary_rank ASC;
 """
 
 COMPANY_DETAILS_FOR_CID = """
@@ -12,7 +13,8 @@ WHERE cid = %s;
 ALL_JOB_DETAILS_FOR_CID = """
 SELECT *
 FROM JOB_DETAILS
-WHERE cid = %s;
+WHERE cid = %s
+ORDER BY job_rating_rank ASC, job_salary_rank ASC;
 """
 
 HIRES_BY_TERM_FOR_CID = """
@@ -21,7 +23,8 @@ SELECT
     COUNT(term_num) as hires
 FROM PLACEMENT
 WHERE cid = %s
-GROUP BY term_num;
+GROUP BY term_num
+ORDER BY term_num;
 """
 
 HIRES_BY_TERM_FOR_JID = """
@@ -30,12 +33,14 @@ SELECT
     COUNT(term_num) as hires
 FROM PLACEMENT
 WHERE jid = %s
-GROUP BY term_num;
+GROUP BY term_num
+ORDER BY term_num;
 """
 
 ALL_JOB_DETAILS = """
 SELECT *
-FROM JOB_DETAILS;
+FROM JOB_DETAILS
+ORDER BY job_rating_rank ASC, job_salary_rank ASC, company_mmr_rank ASC, company_rating_rank ASC, company_salary_rank ASC;
 """
 
 JOB_DETAILS_FOR_JID = """
@@ -49,7 +54,8 @@ SELECT *
 FROM JOB_TAG
 NATURAL JOIN TAG
 NATURAL JOIN JOB_DETAILS
-WHERE TAG.label = %s;
+WHERE TAG.label = %s
+ORDER BY job_rating_rank ASC, job_salary_rank ASC, company_mmr_rank ASC, company_rating_rank ASC, company_salary_rank ASC;
 """
 
 ALL_TAGS = """
