@@ -117,6 +117,18 @@ BEFORE UPDATE ON REVIEW
 FOR EACH ROW
 SET NEW.cid = (SELECT cid FROM JOB WHERE jid = NEW.jid);
 
+delimiter $$
+
+CREATE TRIGGER program_enroll_check 
+BEFORE INSERT on STUDENT
+FOR EACH ROW
+BEGIN
+IF NEW.enrol_date IS NOT NULL AND DATE(NEW.enrol_date) > DATE(NEW.grad_date)
+THEN SET NEW.grad_date = DATE_ADD(NEW.enrol_date, INTERVAL 4 YEAR); 
+END IF;
+END$$
+
+delimiter ;
 
 -- VIEWS
 
@@ -193,4 +205,8 @@ ON JOB.jid = JOB_REVIEW.jid;
 
 -- INDEXES
 
-CREATE UNIQUE INDEX TAG_LABEL ON TAG(label);
+CREATE UNIQUE INDEX tag_label ON TAG(label);
+CREATE INDEX company_term_num ON PLACEMENT(cid, term_num);
+CREATE INDEX salary_filter ON PLACEMENT(salary);
+CREATE INDEX mmr_filter ON COMPANY(mmr);
+CREATE INDEX rating_filter ON REVIEW(rating);
