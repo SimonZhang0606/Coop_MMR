@@ -65,6 +65,20 @@ def GET_jobs_jid(jid):
     }
 
 
+@app.route('/jobs/<jid>/reviews', methods=['POST'])
+def POST_jobs_jid_reviews(jid):
+    form = request.form
+    headline = form.get('headline')
+    review_body = form.get('review_body')
+    rating = form.get('rating', None)
+    with DB.get_cursor() as cursor:
+        review = insert_review_for_jid(
+            cursor, jid,
+            headline=headline, review_body=review_body, rating=rating,
+        )
+    return review
+
+
 @app.route('/tags', methods=['GET'])
 def GET_tags():
     with DB.get_cursor() as cursor:

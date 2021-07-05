@@ -21,25 +21,26 @@ DROP TABLE IF EXISTS STUDENT;
 
 CREATE TABLE STUDENT
   (
-    sid         DECIMAL(9, 0) NOT NULL PRIMARY KEY,
+    sid         INT UNSIGNED NOT NULL AUTO_INCREMENT,
     name        VARCHAR(30),
     program     TEXT NOT NULL,
     enrol_date  DATE NOT NULL,
-    grad_date   DATE
+    grad_date   DATE,
+    PRIMARY KEY (sid)
   );
 
 CREATE TABLE COMPANY
   (
-    cid         DECIMAL(9, 0) NOT NULL,
+    cid         INT UNSIGNED NOT NULL AUTO_INCREMENT,
     name        VARCHAR(30) NOT NULL,
-    mmr         INT NOT NULL,
+    mmr         INT UNSIGNED NOT NULL,
     PRIMARY KEY (cid)
   );
 
 CREATE TABLE JOB
   (
-    cid         DECIMAL(9, 0) NOT NULL,
-    jid         DECIMAL(9, 0) NOT NULL,
+    cid         INT UNSIGNED NOT NULL,
+    jid         INT UNSIGNED NOT NULL AUTO_INCREMENT,
     title       TEXT NOT NULL,
     PRIMARY KEY (jid),
     FOREIGN KEY (cid) REFERENCES COMPANY(cid)
@@ -47,11 +48,11 @@ CREATE TABLE JOB
 
 CREATE TABLE PLACEMENT
   (
-     cid        DECIMAL(9, 0) NOT NULL,
-     jid        DECIMAL(9, 0) NOT NULL,
-     pid        DECIMAL(9, 0) NOT NULL,
-     sid        DECIMAL(9, 0) NOT NULL,
-     term_num   INT NOT NULL,
+     cid        INT UNSIGNED NOT NULL,
+     jid        INT UNSIGNED NOT NULL,
+     pid        INT UNSIGNED NOT NULL AUTO_INCREMENT,
+     sid        INT UNSIGNED NOT NULL,
+     term_num   INT UNSIGNED NOT NULL,
      salary     DECIMAL(9, 2),
      start_date DATE NOT NULL,
      end_date   DATE,
@@ -63,12 +64,12 @@ CREATE TABLE PLACEMENT
 
 CREATE TABLE REVIEW
   (
-    cid         DECIMAL(9, 0) NOT NULL,
-    jid         DECIMAL(9, 0) NOT NULL,
-    rid         DECIMAL(9, 0) NOT NULL,
+    cid         INT UNSIGNED NOT NULL,
+    jid         INT UNSIGNED NOT NULL,
+    rid         INT UNSIGNED NOT NULL AUTO_INCREMENT,
     headline    TEXT NOT NULL,
     review_body TEXT NOT NULL,
-    rating      INT,
+    rating      INT UNSIGNED,
     PRIMARY KEY(rid),
     FOREIGN KEY(cid) REFERENCES COMPANY(cid),
     FOREIGN KEY(jid) REFERENCES JOB(jid)
@@ -76,15 +77,15 @@ CREATE TABLE REVIEW
 
 CREATE TABLE TAG
   (
-    tid         DECIMAL(9, 0) NOT NULL,
+    tid         INT UNSIGNED NOT NULL AUTO_INCREMENT,
     label       VARCHAR(100) UNIQUE NOT NULL,
     PRIMARY KEY (tid)
   );
 
 CREATE TABLE JOB_TAG
   (
-    jid         DECIMAL(9, 0) NOT NULL,
-    tid         DECIMAL(9, 0) NOT NULL,
+    jid         INT UNSIGNED NOT NULL,
+    tid         INT UNSIGNED NOT NULL,
     PRIMARY KEY(jid, tid),
     FOREIGN KEY(jid) REFERENCES JOB(jid)
   );

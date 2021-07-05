@@ -89,3 +89,16 @@ def all_reviews_for_jid(cursor, jid):
     for review in cursor:
         print(review)
         yield serialize_review(review)
+
+
+def insert_review_for_jid(cursor, jid, headline, review_body, rating=None):
+    cursor.execute(
+        INSERT_REVIEW_FOR_JID,
+        (headline, review_body, rating, jid,),
+    )
+    rid = cursor.lastrowid
+    cursor.execute(REVIEW_FOR_RID, (rid,))
+    review = cursor.fetchone()
+    print(review)
+    assert(review is not None)
+    return serialize_review(review)

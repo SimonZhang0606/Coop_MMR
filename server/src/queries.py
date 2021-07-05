@@ -70,3 +70,21 @@ SELECT *
 FROM REVIEW
 WHERE jid = %s;
 """
+
+INSERT_REVIEW_FOR_JID = """
+INSERT INTO REVIEW(cid, jid, headline, review_body, rating)
+SELECT
+    cid,
+    jid,
+    %s AS headline,
+    %s AS review_body,
+    %s AS rating
+FROM JOB
+WHERE jid = %s;
+"""
+
+REVIEW_FOR_RID = """
+SELECT *
+FROM REVIEW
+WHERE rid = %s;
+"""
