@@ -1,0 +1,63 @@
+
+Query Test 1: ALL_COMPANY_DETAILS
+cid	company_name	company_mmr	company_min_salary	company_avg_salary	company_max_salary	company_avg_rating	company_mmr_rank	company_salary_rank	company_rating_rank
+79142021	Facebook	1816	-1.00	-1.000000	-1.00	NULL	1	1	1
+918101757	Amazon	1793	-1.00	-1.000000	-1.00	NULL	2	2	2
+888183796	NVIDIA	1746	-1.00	-1.000000	-1.00	NULL	3	3	3
+263721230	Lifion by ADP	1745	-1.00	-1.000000	-1.00	NULL	4	4	4
+63587816	Google	1727	-1.00	-1.000000	-1.00	NULL	5	5	5
+716659106	Huawei	1719	-1.00	-1.000000	-1.00	NULL	6	6	6
+163825221	Citadel	1701	-1.00	-1.000000	-1.00	NULL	7	7	7
+809148085	Riot Games	1688	-1.00	-1.000000	-1.00	NULL	8	8	8
+926862254	Yext	1685	-1.00	-1.000000	-1.00	NULL	9	9	9
+825240319	Splunk	1684	-1.00	-1.000000	-1.00	NULL	10	10	10
+
+Query Test 2: COMPANY_DETAILS_FOR_CID
+cid	company_name	company_mmr	company_min_salary	company_avg_salary	company_max_salary	company_avg_rating	company_mmr_rank	company_salary_rank	company_rating_rank
+920417428	Wish	1654	-1.00	-1.000000	-1.00	NULL	17	17	17
+
+Query Test 3: ALL_JOB_DETAILS_FOR_CID
+cid	company_name	company_mmr	company_min_salary	company_avg_salary	company_max_salary	company_avg_rating	company_salary_rank	company_rating_rank	company_mmr_rank	jid	job_title	job_min_salary	job_avg_salary	job_max_salary	job_avg_rating	job_salary_rank	job_rating_rank
+920417428	Wish	1654	-1.00	-1.000000	-1.00	NULL	17	17	17	3345866	Software Engineer Intern - Platform Team	-1.00	-1.000000	-1.00	NULL	101	101
+920417428	Wish	1654	-1.00	-1.000000	-1.00	NULL	17	17	17	24154801	Software Engineer Intern	-1.00	-1.000000	-1.00	NULL	102	102
+920417428	Wish	1654	-1.00	-1.000000	-1.00	NULL	17	17	17	53896597	Software Engineer - Infrastructure	-1.00	-1.000000	-1.00	NULL	103	103
+920417428	Wish	1654	-1.00	-1.000000	-1.00	NULL	17	17	17	162623517	Software Engineer (Android)	-1.00	-1.000000	-1.00	NULL	104	104
+920417428	Wish	1654	-1.00	-1.000000	-1.00	NULL	17	17	17	254859147	Software Engineer Intern - Data & Relevancy	-1.00	-1.000000	-1.00	NULL	105	105
+920417428	Wish	1654	-1.00	-1.000000	-1.00	NULL	17	17	17	266879133	Software Engineer Intern - Core Infrastructure Team	-1.00	-1.000000	-1.00	NULL	106	106
+920417428	Wish	1654	-1.00	-1.000000	-1.00	NULL	17	17	17	350689194	Infrastructure Engineer Intern	-1.00	-1.000000	-1.00	NULL	107	107
+920417428	Wish	1654	-1.00	-1.000000	-1.00	NULL	17	17	17	358107400	Software Engineer (Logistics Team)	-1.00	-1.000000	-1.00	NULL	108	108
+920417428	Wish	1654	-1.00	-1.000000	-1.00	NULL	17	17	17	440947087	Full Stack Software Engineering Intern	-1.00	-1.000000	-1.00	NULL	109	109
+920417428	Wish	1654	-1.00	-1.000000	-1.00	NULL	17	17	17	539933577	Data and Relevancy Engineer	-1.00	-1.000000	-1.00	NULL	110	110
+
+Query Test 4: HIRES_BY_TERM_FOR_CID
+term_num	hires
+1	5
+2	8
+3	10
+4	7
+5	3
+
+Query Test 5: HIRES_BY_TERM_FOR_JID
+term_num	hires
+1	3
+2	4
+3	4
+4	1
+5	3
+
+Query Test 6: ALL_JOB_DETAILS
+cid	company_name	company_mmr	company_min_salary	company_avg_salary	company_max_salary	company_avg_rating	company_salary_rank	company_rating_rank	company_mmr_rank	jid	job_title	job_min_salary	job_avg_salary	job_max_salary	job_avg_rating	job_salary_rank	job_rating_rank
+79142021	Facebook	1816	-1.00	-1.000000	-1.00	NULL	1	1	1	21951176	Research Scientist	-1.00	-1.000000	-1.00	NULL	1	1
+79142021	Facebook	1816	-1.00	-1.000000	-1.00	NULL	1	1	1	169947921	Software Engineer	-1.00	-1.000000	-1.00	NULL	2	2
+79142021	Facebook	1816	-1.00	-1.000000	-1.00	NULL	1	1	1	248483123	Production Engineer	-1.00	-1.000000	-1.00	NULL	3	3
+79142021	Facebook	1816	-1.00	-1.000000	-1.00	NULL	1	1	1	339821923	Frontend Engineering Intern	-1.00	-1.000000	-1.00	NULL	4	4
+79142021	Facebook	1816	-1.00	-1.000000	-1.00	NULL	1	1	1	341642158	Performance & Capacity Engineer Intern	-1.00	-1.000000	-1.00	NULL	5	5
+79142021	Facebook	1816	-1.00	-1.000000	-1.00	NULL	1	1	1	387106999	Software Engineer Intern	-1.00	-1.000000	-1.00	NULL	6	6
+79142021	Facebook	1816	-1.00	-1.000000	-1.00	NULL	1	1	1	397934690	Technical Program Manager	-1.00	-1.000000	-1.00	NULL	7	7
+79142021	Facebook	1816	-1.00	-1.000000	-1.00	NULL	1	1	1	479355723	Software Engineering Intern	-1.00	-1.000000	-1.00	NULL	8	8
+79142021	Facebook	1816	-1.00	-1.000000	-1.00	NULL	1	1	1	487853818	Front End Engineer Intern	-1.00	-1.000000	-1.00	NULL	9	9
+79142021	Facebook	1816	-1.00	-1.000000	-1.00	NULL	1	1	1	551127052	Production Engineering Intern	-1.00	-1.000000	-1.00	NULL	10	10
+
+Query Test 7: JOB_DETAILS_FOR_JID
+cid	company_name	company_mmr	company_min_salary	company_avg_salary	company_max_salary	company_avg_rating	company_salary_rank	company_rating_rank	company_mmr_rank	jid	job_title	job_min_salary	job_avg_salary	job_max_salary	job_avg_rating	job_salary_rank	job_rating_rank
+920417428	Wish	1654	-1.00	-1.000000	-1.00	NULL	17	17	17	24154801	Software Engineer Intern	-1.00	-1.000000	-1.00	NULL	102	102
