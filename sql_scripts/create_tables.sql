@@ -18,8 +18,7 @@ DROP TABLE IF EXISTS JOB;
 DROP TABLE IF EXISTS COMPANY;
 DROP TABLE IF EXISTS STUDENT;
 
-
--- INDEXES
+-- TABLES
 
 CREATE TABLE STUDENT
   (
@@ -93,7 +92,7 @@ CREATE TABLE JOB_TAG
   );
 
 
--- ASSERTIONS
+-- ASSERTIONS AND TRIGGERS
 -- MySQL doesn't support assertions so we have to use triggers instead to make
 -- sure that the cid FKs refers to the same company as the jid FK.
 

@@ -4,6 +4,7 @@ import mysql.connector
 from credentials import email, pwd
 from usernames import usernames
 
+import random
 import uuid
 import hashlib
 from pprint import pprint
@@ -11,6 +12,9 @@ import math
 
 HASH_DIGIT_NUM = 9
 TESTING = 1
+
+def random_int_as_str(a, b):
+    return str(random.randint(a, b))
 
 def get_uuid():
     return str(uuid.uuid4())
@@ -76,7 +80,7 @@ for user_idx, username in enumerate(usernames):
     # student
     try:
         student_name = "{} {}".format(profile['firstName'], profile['lastName'])
-        sid = hash_string(student_name, HASH_DIGIT_NUM)
+        sid = hash_string(student_name + random_int_as_str(0, 9), HASH_DIGIT_NUM)
         program = profile['education'][0]['degreeName']
         enrol_date, grad_date = profile['education'][0]['timePeriod']['startDate']['year'], profile['education'][0]['timePeriod']['endDate']['year']
         total_terms = len(profile['experience'])
@@ -168,7 +172,7 @@ for match in matches_result:
 
 for company in company_output:
 
-    company_tsv = "{}\t{}\t{}\n".format(cid, company[1],company_elo_hash[company[0]][2])
+    company_tsv = "{}\t{}\t{}\n".format(company[0], company[1],company_elo_hash[company[0]][2])
     fcompany.write(company_tsv)
 
 
