@@ -2,7 +2,18 @@
 
 Co-op MMR is a place for University of Waterloo students to look up and compare co-op jobs.
 
-Currently, the code here supports only the Browse Jobs page (Feature 4 in the report).
+What's implemented:
+
+- Browse Jobs page (Feature 4 in the report)
+- Browse Companies page
+- Breakdown of Company Hires by Work Term
+- MMR
+- sorting on each column
+
+TODO by tomorrow:
+
+- leaving a review
+- job hires by work term
 
 ## Data Scraping and Populating the Database
 
