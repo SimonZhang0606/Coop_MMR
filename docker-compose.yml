@@ -11,7 +11,7 @@ services:
     volumes:
       - ./sql_scripts/create_tables.sql:/docker-entrypoint-initdb.d/01_create_tables.sql
       - ./sql_scripts/populate_tables_docker.sql:/docker-entrypoint-initdb.d/02_populate_tables.sql
-      - ./sql_scripts/sample_data:/docker-entrypoint-initdb.d/sample_data
+      - ./sql_scripts/data:/docker-entrypoint-initdb.d/data
     ports:
       - 3306:3306
 
