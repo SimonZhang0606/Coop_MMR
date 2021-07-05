@@ -107,16 +107,16 @@ for user_idx, username in enumerate(usernames):
             
             # company
             company_name = term['companyName']
+            cid = hash_string(company_name, HASH_DIGIT_NUM)
             if company_name not in company_hash:
-                cid = hash_string(company_name, HASH_DIGIT_NUM)
                 company_hash[company_name] = cid
                 company_output.append([cid, company_name])
                 company_elo_hash[cid] = [company_name, cid, 1500]
 
             # job
             job_title = term['title']
+            jid = hash_string(str(cid) + job_title, HASH_DIGIT_NUM)
             if (job_title, company_name) not in fjob_hash:
-                jid = hash_string(str(cid) + job_title, HASH_DIGIT_NUM)
                 fjob_hash[(job_title, company_name)] = jid
                 fjob_output.append("{}\t{}\t{}\n".format(cid,jid, job_title))
 
