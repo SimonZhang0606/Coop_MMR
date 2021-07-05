@@ -1,1 +1,1 @@
-email, pwd = 'Creamcrunch0606@gmail.com', 'AcademicMission'
+email, pwd = 'Creamcrunch0606@gmail.com', 'ThankMrGoose@2021'
