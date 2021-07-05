@@ -58,6 +58,8 @@ fjob = open("data/job.tsv", "a")
 fstudent = open("data/student.tsv", "a")
 fplacement = open("data/placement.tsv", "a")
 
+student_hash = {}
+
 company_output = []
 company_hash = {}
 company_elo_hash = {} 
@@ -81,6 +83,9 @@ for user_idx, username in enumerate(usernames):
     try:
         student_name = "{} {}".format(profile['firstName'], profile['lastName'])
         sid = hash_string(student_name + random_int_as_str(0, 9), HASH_DIGIT_NUM)
+        while(sid in student_hash):
+            sid = sid + 1
+        student_hash[sid] = sid
         program = profile['education'][0]['degreeName']
         enrol_date, grad_date = profile['education'][0]['timePeriod']['startDate']['year'], profile['education'][0]['timePeriod']['endDate']['year']
         total_terms = len(profile['experience'])
