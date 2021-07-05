@@ -71,10 +71,6 @@ placement_tsv = ""
 
 for user_idx, username in enumerate(usernames):
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 0063c58d103cb33cd03bf6c3752aaf9456af28aa
     profile = api.get_profile(username)
 
     # student
