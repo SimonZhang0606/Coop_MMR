@@ -1,0 +1,3 @@
+Flask==2.0.1
+linkedin-api==1.1.0
+mysql-connector-python==8.0.25
