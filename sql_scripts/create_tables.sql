@@ -23,17 +23,17 @@ DROP TABLE IF EXISTS STUDENT;
 CREATE TABLE STUDENT
   (
     sid         INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    name        VARCHAR(30),
+    name        VARCHAR(255),
     program     TEXT NOT NULL,
-    enrol_date  DATE NOT NULL,
-    grad_date   DATE,
+    enrol_date  YEAR NOT NULL,
+    grad_date   YEAR,
     PRIMARY KEY (sid)
   );
 
 CREATE TABLE COMPANY
   (
     cid         INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    name        VARCHAR(30) NOT NULL,
+    name        VARCHAR(255) NOT NULL,
     mmr         INT UNSIGNED NOT NULL,
     PRIMARY KEY (cid)
   );
@@ -79,7 +79,7 @@ CREATE TABLE REVIEW
 CREATE TABLE TAG
   (
     tid         INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    label       VARCHAR(100) UNIQUE NOT NULL,
+    label       VARCHAR(127) UNIQUE NOT NULL,
     PRIMARY KEY (tid)
   );
 
@@ -116,18 +116,18 @@ BEFORE UPDATE ON REVIEW
 FOR EACH ROW
 SET NEW.cid = (SELECT cid FROM JOB WHERE jid = NEW.jid);
 
-delimiter $$
+-- delimiter $$
 
-CREATE TRIGGER program_enroll_check 
-BEFORE INSERT on STUDENT
-FOR EACH ROW
-BEGIN
-IF NEW.enrol_date IS NOT NULL AND DATE(NEW.enrol_date) > DATE(NEW.grad_date)
-THEN SET NEW.grad_date = DATE_ADD(NEW.enrol_date, INTERVAL 4 YEAR); 
-END IF;
-END$$
+-- CREATE TRIGGER program_enroll_check 
+-- BEFORE INSERT on STUDENT
+-- FOR EACH ROW
+-- BEGIN
+-- IF NEW.enrol_date IS NOT NULL AND DATE(NEW.enrol_date) > DATE(NEW.grad_date)
+-- THEN SET NEW.grad_date = DATE_ADD(NEW.enrol_date, INTERVAL 4 YEAR); 
+-- END IF;
+-- END$$
 
-delimiter ;
+-- delimiter ;
 
 -- VIEWS
 

@@ -19,6 +19,8 @@ This is the quickest and easiest way to get everything set up – all you need t
 
 > Unfortunately, Docker does not run on all systems. Follow [Getting Started without Docker](#getting-started-without-docker) if you cannot install Docker.
 
+> **Warning**: if you pull this code on Windows, you will need to manually convert the `sql_scripts/data/*.tsv` files to have LF endings instead of CRLF.
+
 1. Run `docker compose up`.
 1. Visit http://localhost:5000/jobs to see the demo endpoint in action.
 1. Visit http://localhost:3000/ to see the demo frontend in action.
