@@ -67,10 +67,10 @@ def GET_jobs_jid(jid):
 
 @app.route('/jobs/<jid>/reviews', methods=['POST'])
 def POST_jobs_jid_reviews(jid):
-    form = request.form
-    headline = form.get('headline')
-    review_body = form.get('review_body')
-    rating = form.get('rating', None)
+    data = request.json
+    headline = data.get('headline')
+    review_body = data.get('review_body')
+    rating = data.get('rating', None)
     with DB.get_cursor() as cursor:
         review = insert_review_for_jid(
             cursor, jid,
