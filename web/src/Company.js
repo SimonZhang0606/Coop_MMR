@@ -8,6 +8,7 @@ export default class Company extends React.Component {
     max_salary: null,
     min_salary: null,
     mmr: null,
+    mmr_rank: null,
     name: null, 
     jobs: [],
     hires_by_term: {},
@@ -25,6 +26,7 @@ export default class Company extends React.Component {
           max_salary: result.company_max_salary,
           min_salary: result.company_min_salary,
           mmr: result.company_mmr,
+          mmr_rank: result.company_mmr_rank,
           name: result.company_name,
           jobs: result.jobs,
           hires_by_term: result.hires_by_term
@@ -49,8 +51,8 @@ export default class Company extends React.Component {
     return this.state.jobs.map((j) => (
       <tr key={`job-${j.jid}`}>
         <td>{j.job_title}</td>
-        <td>{j.job_avg_salary > 0 ? j.job_avg_salary : null}</td>
-        <td>{j.job_avg_rating}</td>
+        <td>{j.job_avg_salary > 0 ? j.job_avg_salary : 'N/A'}</td>
+        <td>{j.job_avg_rating ? j.job_avg_rating : 'N/A'}</td>
       </tr>
     ));
   }
@@ -58,13 +60,16 @@ export default class Company extends React.Component {
   render() {
     return (
       <>
-        <h2>{this.state.name}</h2>
-        <p>{`Rating: ${this.state.avg_rating}`}</p>
-        <p>{`Salary: ${this.state.avg_salary}`}</p>
-        <p>{`Max salary: ${this.state.max_salary}`}</p>
-        <p>{`Min salary: ${this.state.min_salary}`}</p>
-        <p>{`MMR: ${this.state.mmr}`}</p>
-        <h3>Past Jobs</h3>
+        <div class="company-header">
+          <h1 class="company-name">{this.state.name}</h1>
+          <p class="mmr-rank">{`(# ${this.state.mmr_rank} Rank)`}</p>
+        </div>
+        <p>{`MMR: ${this.state.mmr ? this.state.mmr : 'N/A'}`}</p>
+        <p>{`Rating: ${this.state.avg_rating ? this.state.avg_rating : 'N/A'}`}</p>
+        <p>{`Salary: ${this.state.avg_salary ? this.state.avg_salary : 'N/A'}`}</p>
+        <p>{`Max salary: ${this.state.max_salary ? this.state.max_salary : 'N/A'}`}</p>
+        <p>{`Min salary: ${this.state.min_salary ? this.state.min_salary: 'N/A'}`}</p>
+        <h3 class="sub-header">Past Jobs</h3>
         <table>
           <thead>
             <tr>
@@ -77,7 +82,7 @@ export default class Company extends React.Component {
             {this.tableRows()}
           </tbody>
         </table>
-        <h3>Co-ops Breakdown By Work Term</h3>
+        <h3 class="sub-header">Breakdown of Hires By Work Term</h3>
         <Chart
           width={'500px'}
           height={'500px'}

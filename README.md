@@ -2,18 +2,32 @@
 
 Co-op MMR is a place for University of Waterloo students to look up and compare co-op jobs.
 
-What's implemented:
+Features implemented thus far:
 
-- Browse Jobs page (Feature 4 in the report)
-- Browse Companies page
-- Breakdown of Company Hires by Work Term
-- MMR
-- sorting on each column
+All backend endpoints are implemeneted in server/app.py.
+All queries are implemented in server/queries.py.
 
-TODO by tomorrow:
-
-- leaving a review
-- job hires by work term
+- Browse Jobs page (Feature 4 in the report)  
+  Frontend: web/src/Jobs.js  
+  Endpoint: GET /jobs
+- Browse Companies page (Feature 1 in the report)  
+  Frontend: web/src/Companies.js  
+  Endpoint: GET /companies
+- Viewing a company's job listings (Feature 2 in the report)  
+  Frontend: web/src/Company.js  
+  Endpoint: GET /companies/:cid
+- Viewing a company's hire breakdowns by work term (Feature 3 in the report)  
+  Frontend: web/src/Company.js  
+  Endpoint: GET /companies/:cid
+- Viewing job details and reviews (Feature 6 in the report)  
+  Frontend: web/src/Job.js  
+  Endpoint: GET /jobs/:jid
+- Leaving a review for a job (Feature 7 in the report)  
+  Frontend: web/src/Job.js  
+  Endpoint: POST /jobs/:jid/review
+- MMR (Feature 8 in the report)  
+  MMR Calculations: sql_scripts/linkedin_scraper.py  
+  Endpoints: GET /companies, GET /companies/:cid, GET /jobs, GET /jobs/:jid
 
 ## Data Scraping and Populating the Database
 

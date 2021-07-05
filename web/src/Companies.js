@@ -75,10 +75,10 @@ export default class Companies extends React.Component {
         <table>
           <thead>
             <tr>
-              <th onClick={() => this.sortRows("company")}>Company</th>
-              <th onClick={() => this.sortRows("salary")}>Avg. Salary</th>
-              <th onClick={() => this.sortRows("rating")}>Avg. Rating</th>
-              <th onClick={() => this.sortRows("mmr")}>MMR</th>
+              <th class="company" onClick={() => this.sortRows("company")}>Company</th>
+              <th class="salary" onClick={() => this.sortRows("salary")}>Avg. Salary</th>
+              <th class="rating" onClick={() => this.sortRows("rating")}>Avg. Rating</th>
+              <th class="mmr" onClick={() => this.sortRows("mmr")}>MMR</th>
             </tr>
           </thead>
           <tbody>

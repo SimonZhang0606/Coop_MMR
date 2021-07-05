@@ -2,9 +2,67 @@
   text-align: center;
 }
 
+body {
+  margin: 0 3%;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header .title {
+  margin-right: 2%;
+}
+
+.header .header-button {
+  width: 10%;
+}
+
+table {
+  width: 100%;
+}
+
 table,
 th,
 td {
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+table .salary,
+table .rating,
+table .mmr {
+  width: 15%;
+}
+
+th,
+td {
+  height: 30px;
+  padding: 5px;
+}
+
+.sub-header {
+  margin-top: 3%;
+}
+
+.company-header {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  align-items: center;
+}
+
+.company-header .company-name {
+  margin-right: 2%;
+}
+
+.review-input {
+  width: 75%;
+  margin: 1% 0%;
+}
+
+textarea {
+  width: 75%;
 }

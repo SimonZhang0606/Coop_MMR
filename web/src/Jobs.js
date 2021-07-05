@@ -22,7 +22,7 @@ export default class Jobs extends React.Component {
   tableRows() {
     return this.state.jobs.map((j) => (
       <tr key={`job-${j.jid}`}>
-        <td>{j.job_title}</td>
+        <td><a href={`/job/${j.jid}`}>{j.job_title}</a></td>
         <td><a href={`/company/${j.cid}`}>{j.company_name}</a></td>
         <td>{j.job_avg_salary > 0 ? j.job_avg_salary : null}</td>
         <td>{j.job_avg_rating}</td>
@@ -75,10 +75,10 @@ export default class Jobs extends React.Component {
         <table>
           <thead>
             <tr>
-              <th onClick={() => this.sortRows("title")}>Title</th>
-              <th onClick={() => this.sortRows("company")}>Company</th>
-              <th onClick={() => this.sortRows("salary")}>Avg. Salary</th>
-              <th onClick={() => this.sortRows("rating")}>Avg. Rating</th>
+              <th class="job-title" onClick={() => this.sortRows("title")}>Title</th>
+              <th class="company-name" onClick={() => this.sortRows("company")}>Company</th>
+              <th class="salary" onClick={() => this.sortRows("salary")}>Avg. Salary</th>
+              <th class="rating" onClick={() => this.sortRows("rating")}>Avg. Rating</th>
             </tr>
           </thead>
           <tbody>
