@@ -139,7 +139,10 @@ SELECT
     company_min_salary,
     company_avg_salary,
     company_max_salary,
-    company_avg_rating
+    company_avg_rating,
+    ROW_NUMBER() OVER (ORDER BY COMPANY.mmr DESC, company_avg_rating DESC, company_avg_salary DESC) company_mmr_rank,
+    ROW_NUMBER() OVER (ORDER BY company_avg_salary DESC, COMPANY.mmr DESC, company_avg_rating DESC) company_salary_rank,
+    ROW_NUMBER() OVER (ORDER BY company_avg_rating DESC, COMPANY.mmr DESC, company_avg_salary DESC) company_rating_rank
 FROM COMPANY
 LEFT OUTER JOIN (
     SELECT
@@ -167,16 +170,21 @@ SELECT
     JOB.cid,
     COMPANY_DETAILS.company_name,
     COMPANY_DETAILS.company_mmr,
-    JOB.jid,
-    JOB.title AS job_title,
     COMPANY_DETAILS.company_min_salary,
     COMPANY_DETAILS.company_avg_salary,
     COMPANY_DETAILS.company_max_salary,
     COMPANY_DETAILS.company_avg_rating,
+    COMPANY_DETAILS.company_salary_rank,
+    COMPANY_DETAILS.company_rating_rank,
+    COMPANY_DETAILS.company_mmr_rank,
+    JOB.jid,
+    JOB.title AS job_title,
     job_min_salary,
     job_avg_salary,
     job_max_salary,
-    job_avg_rating
+    job_avg_rating,
+    ROW_NUMBER() OVER (ORDER BY job_avg_salary DESC, COMPANY_DETAILS.company_mmr_rank ASC, COMPANY_DETAILS.company_rating_rank ASC, COMPANY_DETAILS.company_salary_rank ASC, job_avg_rating DESC) job_salary_rank,
+    ROW_NUMBER() OVER (ORDER BY job_avg_rating DESC, COMPANY_DETAILS.company_mmr_rank ASC, COMPANY_DETAILS.company_rating_rank ASC, COMPANY_DETAILS.company_salary_rank ASC, job_avg_salary DESC) job_rating_rank
 FROM JOB
 JOIN COMPANY_DETAILS
 ON JOB.cid = COMPANY_DETAILS.cid
