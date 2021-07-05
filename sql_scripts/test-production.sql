@@ -69,6 +69,7 @@ FROM JOB_DETAILS
 WHERE jid = 024154801
 LIMIT 10;
 
+
 -- ----------------------------------------------------------------------------
 -- PRODUCTION TESTS FOR TAG AND REVIEW QUERIES - NOT IMPLEMENTED YET
 -- ----------------------------------------------------------------------------
@@ -98,7 +99,7 @@ LIMIT 10;
 -- ALL_REVIEWS_FOR_JID
 -- SELECT *
 -- FROM REVIEW
--- WHERE jid = %s;
+-- WHERE jid = 024154801;
 
 
 -- INSERT_REVIEW_FOR_JID
@@ -106,17 +107,11 @@ LIMIT 10;
 -- SELECT
 --     cid,
 --     jid,
---     %s AS headline,
---     %s AS review_body,
---     %s AS rating
+--     'headline' AS headline,
+--     'review_body' AS review_body,
+--     3 AS rating
 -- FROM JOB
--- WHERE jid = %s;
-
-
--- ALL_REVIEWS_FOR_JID (again, to prove that INSERT_REVIEW_FOR_JID worked)
--- SELECT *
--- FROM REVIEW
--- WHERE jid = %s;
+-- WHERE jid = 024154801;
 
 
 -- REVIEW_FOR_RID
