@@ -2,39 +2,38 @@
 
 Co-op MMR is a place for University of Waterloo students to look up and compare co-op jobs.
 
-Features implemented thus far:
+## Features
 
-All backend endpoints are implemeneted in server/app.py.
-All queries are implemented in server/queries.py.
+In the backend, all backend endpoints are implemented in `server/src/app.py`. All queries are implemented in `server/src/queries.py`, and are executed using functions in `server/src/drivers.py`.
 
-- Browse Jobs page (Feature 4 in the report)  
-  Frontend: web/src/Jobs.js  
-  Endpoint: GET /jobs
-- Browse Companies page (Feature 1 in the report)  
-  Frontend: web/src/Companies.js  
-  Endpoint: GET /companies
-- Viewing a company's job listings (Feature 2 in the report)  
-  Frontend: web/src/Company.js  
-  Endpoint: GET /companies/:cid
-- Viewing a company's hire breakdowns by work term (Feature 3 in the report)  
-  Frontend: web/src/Company.js  
-  Endpoint: GET /companies/:cid
-- Viewing job details and reviews (Feature 6 in the report)  
-  Frontend: web/src/Job.js  
-  Endpoint: GET /jobs/:jid
-- Leaving a review for a job (Feature 7 in the report)  
-  Frontend: web/src/Job.js  
-  Endpoint: POST /jobs/:jid/review
-- MMR (Feature 8 in the report)  
-  MMR Calculations: sql_scripts/linkedin_scraper.py  
-  Endpoints: GET /companies, GET /companies/:cid, GET /jobs, GET /jobs/:jid
+- Browse Jobs page (Feature 4 in the report)
+  - Frontend: `web/src/Jobs.js`
+  - Endpoint: `GET /jobs`
+- Browse Companies page (Feature 1 in the report)
+  - Frontend: `web/src/Companies.js`
+  - Endpoint: `GET /companies`
+- Viewing a company's job listings (Feature 2 in the report)
+  - Frontend: `web/src/Company.js`
+  - Endpoint: `GET /companies/:cid`
+- Viewing a company's hire breakdowns by work term (Feature 3 in the report)
+  - Frontend: `web/src/Company.js`
+  - Endpoint: `GET /companies/:cid`
+- Viewing job details and reviews (Feature 6 in the report)
+  - Frontend: `web/src/Job.js`
+  - Endpoint: `GET /jobs/:jid`
+- Leaving a review for a job (Feature 7 in the report)
+  - Frontend: `web/src/Job.js`
+  - Endpoint: `POST /jobs/:jid/review`
+- MMR (Feature 8 in the report)
+  - MMR Calculations: `sql_scripts/linkedin_scraper.py`
+  - Endpoints that include MMR: `GET /companies`, `GET /companies/:cid`, `GET /jobs`, `GET /jobs/:jid`
 
 ## Data Scraping and Populating the Database
 
-1. Ensure all required dependencies have been installed by running `pip3 install -r sql_scripts/requirement.txt`.
-1. Run `sql_scripts/linkedin_scraper`. It should take less than two hours for the script to run. The scraped data are stored in the `data` folder.
-1. To populate the database using docker, follow [Quick Start with Docker](#quick-start-with-docker). To populate a local database, execute the following steps.
-1. Go to `sql_scripts` directory.
+1. Ensure all required dependencies have been installed by running `pip3 install -r sql_scripts/requirements.txt`.
+1. Run `sql_scripts/linkedin_scraper.py`. It should take less than two hours for the script to run. The scraped data is stored in the `sql_scripts/data` folder.
+1. To populate the database using Docker, follow [Quick Start with Docker](#quick-start-with-docker). To populate a local database, execute the following steps.
+1. Go to the `sql_scripts` directory.
 1. Run `mysql -u root appDB < ./create_tables.sql` to drop existing table schemas and to create new ones.
 1. Run `mysql -u root appDB < ./populate_tables.sql` to populate the tables with production data.
 
@@ -44,10 +43,10 @@ This is the quickest and easiest way to get everything set up – all you need t
 
 > Unfortunately, Docker does not run on all systems. Follow [Getting Started without Docker](#getting-started-without-docker) if you cannot install Docker.
 
-> **Warning**: if you pull this code on Windows, you will need to manually convert the `sql_scripts/data/*.tsv` files to have LF endings instead of CRLF.
+> **Warning**: If you pull this code on Windows, you will need to manually convert the `sql_scripts/data/*.tsv` files to have LF endings instead of CRLF.
 
 1. Run `docker compose up`.
-1. Visit http://localhost:5000/jobs to see the demo endpoint in action.
+1. Visit http://localhost:5000/companies and http://localhost:5000/jobs to see some endpoints in action.
 1. Visit http://localhost:3000/ to see the demo frontend in action.
 
 To look into the database, visit http://localhost:8080/?server=db&username=root&db=coop_mmr to check out the DB in Adminer. When prompted for a login, use the username `root` and password `ThankMrGoose`.
