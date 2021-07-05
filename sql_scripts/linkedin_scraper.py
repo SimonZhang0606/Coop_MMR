@@ -16,9 +16,6 @@ TESTING = 1
 def random_int_as_str(a, b):
     return str(random.randint(a, b))
 
-def get_uuid():
-    return str(uuid.uuid4())
-
 def date_cmp(date1, date2):
     d1 = date1.split("-")
     d2 = date2.split("-")
@@ -29,19 +26,6 @@ def date_cmp(date1, date2):
         return True
 
     return False
-
-
-def connect_mysql():
-    mydb = mysql.connector.connect(host=MYSQL_HOST,
-                                   user=MYSQL_USER,
-                                   passwd=MYSQL_PWD,
-                                   database=MYSQL_DB_NAME)
-    return mydb
-
-
-def insert_student(name, term_data):
-    insert_command = 'INSERT INTO {0} (PID, SID, CID, Title, StartMonth, StartYear, EndMonth, EndYear'.format(
-        TABLE_NAME)
 
 def hash_string(s, digit_num):
     r = str(int(hashlib.sha256(s.encode('utf-8')).hexdigest(), 16) % 10 ** digit_num)
@@ -136,7 +120,7 @@ for user_idx, username in enumerate(usernames):
             else:
                 end_date = 'N/A'
             
-            pid = hash_string(str(cid) + str(jid) + str(sid), HASH_DIGIT_NUM)
+            pid = hash_string(str(cid) + str(jid) + str(sid) + start_date, HASH_DIGIT_NUM)
 
             placement_tsv = "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(cid, jid,  pid, sid,
                             total_terms - omitted_term_count - i, -1, start_date, end_date)
