@@ -4,6 +4,11 @@ Co-op MMR is a place for University of Waterloo students to look up and compare 
 
 Currently, the code here supports only the Browse Jobs page (Feature 4 in the report).
 
+## Data Scraping and Generation
+
+1. Ensure all required dependencies have been installed by running `pip3 install -r sql_scripts/requirement.txt`.
+1. Run `sql_scripts/linkedin_scraper`. It should take less than two hours for the script to run. The scraped data are stored in the `data` folder.
+
 ## Quick Start with Docker
 
 This is the quickest and easiest way to get everything set up – all you need to install is [Docker](https://www.docker.com/).
@@ -22,7 +27,7 @@ To look into the database, visit http://localhost:8080/?server=db&username=root&
 
 1. Go to the `sql_scripts` folder.
 1. Run `mysql -u root appDB < ./create_tables.sql` to create the table schemas.
-1. Run `mysql -u root appDB < ./populate_tables.sql` to populate the tables with mock data.
+1. Run `mysql -u root appDB < ./populate_tables.sql` to populate the tables with production data.
 
 ### Web App
 
