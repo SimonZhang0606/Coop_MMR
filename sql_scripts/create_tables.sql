@@ -1,9 +1,9 @@
 -- Schema
 -- STUDENT(sid, name, program, enrol_date, grad_date)
--- COMPANY(cid, name)
--- JOB(cid, jid, mmr, title)
+-- COMPANY(cid, name, mmr)
+-- JOB(cid, jid, title)
 -- PLACEMENT(cid, jid, pid, sid, term_num, salary, start_date, end_date)
--- REVIEW(cid, jid, rid, headline, review_desc, RATING)
+-- REVIEW(cid, jid, rid, headline, review_body, rating)
 -- TAG(tid, label)
 -- JOB_TAG(cid, tid)
 
