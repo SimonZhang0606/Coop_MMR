@@ -71,10 +71,12 @@ LIMIT 10;
 
 
 -- ----------------------------------------------------------------------------
--- PRODUCTION TESTS FOR TAG AND REVIEW QUERIES - NOT IMPLEMENTED YET
+-- PRODUCTION TESTS FOR TAG AND REVIEW QUERIES - NO DATA YET
 -- ----------------------------------------------------------------------------
 
 -- ALL_JOB_DETAILS_FOR_TAG
+-- SELECT 'Query Test 8: ALL_JOB_DETAILS_FOR_TAG' AS '';
+
 -- SELECT *
 -- FROM JOB_TAG
 -- NATURAL JOIN TAG
@@ -84,11 +86,15 @@ LIMIT 10;
 
 
 -- ALL_TAGS
+-- SELECT 'Query Test 9: ALL_TAGS' AS '';
+
 -- SELECT tid, label
 -- FROM TAG;
 
 
 -- ALL_TAGS_FOR_JID
+-- SELECT 'Query Test 10: ALL_TAGS_FOR_JID' AS '';
+
 -- SELECT *
 -- FROM JOB_TAG
 -- NATURAL JOIN TAG
@@ -97,12 +103,16 @@ LIMIT 10;
 
 
 -- ALL_REVIEWS_FOR_JID
+-- SELECT 'Query Test 11: ALL_REVIEWS_FOR_JID' AS '';
+
 -- SELECT *
 -- FROM REVIEW
 -- WHERE jid = 024154801;
 
 
 -- INSERT_REVIEW_FOR_JID
+-- SELECT 'Query Test 12: INSERT_REVIEW_FOR_JID' AS '';
+
 -- INSERT INTO REVIEW(cid, jid, headline, review_body, rating)
 -- SELECT
 --     cid,
@@ -115,6 +125,8 @@ LIMIT 10;
 
 
 -- REVIEW_FOR_RID
+-- SELECT 'Query Test 13: REVIEW_FOR_RID' AS '';
+
 -- SELECT *
 -- FROM REVIEW
 -- WHERE rid = %s;
