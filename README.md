@@ -30,7 +30,7 @@ In the backend, all backend endpoints are implemented in `server/src/app.py`. Al
 
 ## Data Scraping and Populating the Database
 
-1. Ensure all required dependencies have been installed by running `pip3 install -r sql_scripts/requirements.txt`.
+1. Ensure all required dependencies have been installed by running `pip install -r sql_scripts/requirements.txt`.
 1. Run `sql_scripts/linkedin_scraper.py`. It should take less than two hours for the script to run. The scraped data is stored in the `sql_scripts/data` folder.
 1. To populate the database using Docker, follow [Quick Start with Docker](#quick-start-with-docker). To populate a local database, execute the following steps.
 1. Go to the `sql_scripts` directory.
@@ -61,6 +61,7 @@ To look into the database, visit http://localhost:8080/?server=db&username=root&
 
 ### Web Server
 
+1. Make sure local Python version >= 3.8.
 1. Go to the `server` folder.
 1. _Optional, but recommended_: Set up and activate a [Python virtual envrionment](https://docs.python.org/3/library/venv.html).
 1. Run `pip install -r requirements.txt` to install dependencies.
