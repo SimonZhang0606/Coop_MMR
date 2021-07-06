@@ -6,25 +6,25 @@ Co-op MMR is a place for University of Waterloo students to look up and compare 
 
 In the backend, all backend endpoints are implemented in `server/src/app.py`. All queries are implemented in `server/src/queries.py`, and are executed using functions in `server/src/drivers.py`.
 
-- Browse Jobs page (Feature 4 in the report)
+- Browse Jobs page (Feature 6 in the report)
   - Frontend: `web/src/Jobs.js`
   - Endpoint: `GET /jobs`
 - Browse Companies page (Feature 1 in the report)
   - Frontend: `web/src/Companies.js`
   - Endpoint: `GET /companies`
-- Viewing a company's job listings (Feature 2 in the report)
+- Viewing a company's job listings (Feature 3 in the report)
   - Frontend: `web/src/Company.js`
   - Endpoint: `GET /companies/:cid`
-- Viewing a company's hire breakdowns by work term (Feature 3 in the report)
+- Viewing a company's hire breakdowns by work term (Feature 4 in the report)
   - Frontend: `web/src/Company.js`
   - Endpoint: `GET /companies/:cid`
-- Viewing job details and reviews (Feature 6 in the report)
+- Viewing job details and reviews, hiring breakdowns by work term (Features 5, 7, 11 in the report)
   - Frontend: `web/src/Job.js`
   - Endpoint: `GET /jobs/:jid`
-- Leaving a review for a job (Feature 7 in the report)
+- Leaving a review for a job (Features 12, 13 in the report)
   - Frontend: `web/src/Job.js`
   - Endpoint: `POST /jobs/:jid/review`
-- MMR (Feature 8 in the report)
+- MMR (Feature 14 in the report)
   - MMR Calculations: `sql_scripts/linkedin_scraper.py`
   - Endpoints that include MMR: `GET /companies`, `GET /companies/:cid`, `GET /jobs`, `GET /jobs/:jid`
 
