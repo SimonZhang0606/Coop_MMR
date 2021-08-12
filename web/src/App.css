@@ -3,7 +3,7 @@
 }
 
 body {
-  margin: 0 3%;
+  margin: 0 10%;
 }
 
 .header {
@@ -20,28 +20,38 @@ body {
   width: 10%;
 }
 
-table {
+/* table {
   width: 100%;
-}
+} */
 
-table,
+/* table,
 th,
 td {
   border: 1px solid black;
   border-collapse: collapse;
+} */
+
+.navbar {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+thead {
+  background-color: #f9f9f9;
+  border-bottom: 2px solid #dee2e6;
 }
 
 table .salary,
 table .rating,
 table .mmr {
-  width: 15%;
+  width: 20%;
 }
 
-th,
+/* th,
 td {
   height: 30px;
   padding: 5px;
-}
+} */
 
 .sub-header {
   margin-top: 3%;

@@ -51,7 +51,7 @@ export default class Company extends React.Component {
     return this.state.jobs.map((j) => (
       <tr key={`job-${j.jid}`}>
         <td><a href={`/job/${j.jid}`}>{j.job_title}</a></td>
-        <td>{j.job_avg_salary > 0 ? j.job_avg_salary : 'N/A'}</td>
+        <td>{j.job_avg_salary > 0 ? '$' + j.job_avg_salary : 'N/A'}</td>
         <td>{j.job_avg_rating ? j.job_avg_rating : 'N/A'}</td>
       </tr>
     ));
@@ -70,12 +70,12 @@ export default class Company extends React.Component {
         <p>{`Max salary: ${this.state.max_salary ? this.state.max_salary : 'N/A'}`}</p>
         <p>{`Min salary: ${this.state.min_salary ? this.state.min_salary: 'N/A'}`}</p>
         <h3 class="sub-header">Past Jobs</h3>
-        <table>
+        <table class="table">
           <thead>
             <tr>
               <th>Job Title</th>
-              <th>Avg. Salary</th>
-              <th>Avg. Rating</th>
+              <th>Salary (CAD/hr)</th>
+              <th>Rating(/5)</th>
             </tr>
           </thead>
           <tbody>

@@ -24,7 +24,7 @@ export default class Jobs extends React.Component {
       <tr key={`job-${j.jid}`}>
         <td><a href={`/job/${j.jid}`}>{j.job_title}</a></td>
         <td><a href={`/company/${j.cid}`}>{j.company_name}</a></td>
-        <td>{j.job_avg_salary > 0 ? j.job_avg_salary : '-'}</td>
+        <td>{j.job_avg_salary > 0 ? '$' + j.job_avg_salary : '-'}</td>
         <td>{j.job_avg_rating ? j.job_avg_rating : '-'}</td>
       </tr>
     ));
@@ -72,13 +72,13 @@ export default class Jobs extends React.Component {
   render() {
     return (
       <>
-        <table>
+        <table class="table">
           <thead>
             <tr>
               <th class="job-title" onClick={() => this.sortRows("title")}>Title</th>
               <th class="company-name" onClick={() => this.sortRows("company")}>Company</th>
-              <th class="salary" onClick={() => this.sortRows("salary")}>Avg. Salary</th>
-              <th class="rating" onClick={() => this.sortRows("rating")}>Avg. Rating</th>
+              <th class="salary" onClick={() => this.sortRows("salary")}>Salary (CAD/hr)</th>
+              <th class="rating" onClick={() => this.sortRows("rating")}>Rating (/5)</th>
             </tr>
           </thead>
           <tbody>

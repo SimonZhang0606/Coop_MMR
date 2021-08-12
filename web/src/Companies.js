@@ -21,9 +21,9 @@ export default class Companies extends React.Component {
 
   tableRows() {
     return this.state.companies.map((c) => (
-      <tr key={`company-${c.cid}`}>
+      <tr scope="row" key={`company-${c.cid}`}>
         <td><a href={`/company/${c.cid}`}>{c.company_name}</a></td>
-        <td>{c.company_avg_salary > 0 ? c.company_avg_salary : '-'}</td>
+        <td>{c.company_avg_salary > 0 ? '$' + c.company_avg_salary : '-'}</td>
         <td>{c.company_avg_rating ? c.company_avg_rating : '-'}</td>
         <td>{c.company_mmr}</td>
       </tr>
@@ -72,13 +72,13 @@ export default class Companies extends React.Component {
   render() {
     return (
       <>
-        <table>
-          <thead>
+        <table class="table">
+          <thead class="thead-dark">
             <tr>
-              <th class="company" onClick={() => this.sortRows("company")}>Company</th>
-              <th class="salary" onClick={() => this.sortRows("salary")}>Avg. Salary</th>
-              <th class="rating" onClick={() => this.sortRows("rating")}>Avg. Rating</th>
-              <th class="mmr" onClick={() => this.sortRows("mmr")}>MMR</th>
+              <th scope="col" class="company" onClick={() => this.sortRows("company")}>Company</th>
+              <th scope="col" class="salary" onClick={() => this.sortRows("salary")}>Salary (CAD/hr)</th>
+              <th scope="col" class="rating" onClick={() => this.sortRows("rating")}>Rating (/5)</th>
+              <th scope="col" class="mmr" onClick={() => this.sortRows("mmr")}>MMR</th>
             </tr>
           </thead>
           <tbody>
