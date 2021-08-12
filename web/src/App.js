@@ -1,31 +1,35 @@
-import './App.css';
-import { BrowserRouter as Router, Route, Switch, Link, useLocation, withRouter } from 'react-router-dom';
-import Jobs from './Jobs.js';
-import Job from './Job.js';
-import Companies from './Companies.js';
-import Company from './Company.js';
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  withRouter,
+} from "react-router-dom";
+import Jobs from "./Jobs.js";
+import Job from "./Job.js";
+import Companies from "./Companies.js";
+import Company from "./Company.js";
 // import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 // import Container from 'react-bootstrap/Container';
-import { Navbar,Nav,NavDropdown,Form,FormControl,Button,Container } from 'react-bootstrap'
+import { Navbar, Nav } from "react-bootstrap";
 
-const Header = props => {
+const Header = (props) => {
   const { location } = props;
   return (
     <Navbar bg="none" variant="light" expand="lg">
-    <Navbar.Brand href="/">Coop MMR</Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="mr-auto" activeKey={location.pathname}>
-        <Nav.Link href="/">🏢 Companies</Nav.Link>
-        <Nav.Link href="/jobs">💼 Jobs</Nav.Link>
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
+      <Navbar.Brand href="/">Coop MMR</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto" activeKey={location.pathname}>
+          <Nav.Link href="/">🏢 Companies</Nav.Link>
+          <Nav.Link href="/jobs">💼 Jobs</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
 const HeaderWithRouter = withRouter(Header);
-
 
 function App() {
   return (
