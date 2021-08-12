@@ -76,7 +76,7 @@ export default class Jobs extends React.Component {
           <thead>
             <tr>
               <th class="job-title" onClick={() => this.sortRows("title")}>Title</th>
-              <th class="company-name" onClick={() => this.sortRows("company")}>Company</th>
+              <th class="company" onClick={() => this.sortRows("company")}>Company</th>
               <th class="salary" onClick={() => this.sortRows("salary")}>Salary (CAD/hr)</th>
               <th class="rating" onClick={() => this.sortRows("rating")}>Rating (/5)</th>
             </tr>

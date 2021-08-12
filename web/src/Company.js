@@ -1,5 +1,8 @@
 import React from "react";
 import Chart from "react-google-charts";
+import Badge from 'react-bootstrap/Badge';
+import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
 
 export default class Company extends React.Component {
   state = {
@@ -61,15 +64,77 @@ export default class Company extends React.Component {
     return (
       <>
         <div class="company-header">
-          <h1 class="company-name">{this.state.name}</h1>
-          <p class="mmr-rank">{`(# ${this.state.mmr_rank} Rank)`}</p>
+            <span class="company-name">{this.state.name}</span>
+            <span class="badge">{`# ${this.state.mmr_rank} Rank`}</span>
         </div>
-        <p>{`MMR: ${this.state.mmr ? this.state.mmr : 'N/A'}`}</p>
-        <p>{`Rating: ${this.state.avg_rating ? this.state.avg_rating : 'N/A'}`}</p>
-        <p>{`Salary: ${this.state.avg_salary ? this.state.avg_salary : 'N/A'}`}</p>
-        <p>{`Max salary: ${this.state.max_salary ? this.state.max_salary : 'N/A'}`}</p>
-        <p>{`Min salary: ${this.state.min_salary ? this.state.min_salary: 'N/A'}`}</p>
-        <h3 class="sub-header">Past Jobs</h3>
+        <CardGroup>
+          <Card className="text-card">
+            <Card.Body>
+              <Card.Title>MMR</Card.Title>
+              <Card.Text>
+                {this.state.mmr ? <h3>{this.state.mmr}</h3> : 'N/A'}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+          <Card className="text-card">
+            <Card.Body>
+              <Card.Title>Average Rating</Card.Title>
+              <Card.Text>
+                {this.state.avg_rating ? <h3>{this.state.avg_rating}</h3> : 'N/A'}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+          <Card className="text-card">
+            <Card.Body>
+              <Card.Title>Average Salary</Card.Title>
+              <Card.Text>
+                {this.state.avg_salary ? <><span class="company-info-salary">${this.state.avg_salary}</span>/hr</> : 'N/A'}
+                <br></br>
+                ({`$${this.state.min_salary ? this.state.min_salary: '_'}`}
+                -
+                {`$${this.state.max_salary ? this.state.max_salary : '_'}`})
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </CardGroup>
+        <Card>
+          <Card.Body>
+          <Card.Title>Hires By Work Term</Card.Title>
+          <div className="piechart-card">
+          <Chart
+                id="chart_div"
+                width={'400px'}
+                height={'400px'}
+                chartType="PieChart"
+                loader={<div>Loading Chart</div>}
+                data={[
+                  ['Term', 'Number'],
+                  ['1', this.state.hires_by_term[1]],
+                  ['2', this.state.hires_by_term[2]],
+                  ['3', this.state.hires_by_term[3]],
+                  ['4', this.state.hires_by_term[4]],
+                  ['5', this.state.hires_by_term[5]],
+                  ['6', this.state.hires_by_term[6]],
+                ]}
+                options={{
+                  title: '',
+                  chartArea: {
+                    height: '100%',
+                    width: '100%',
+                    top: 10,
+                    left: 10,
+                    right: 10,
+                    bottom: 10,
+                  },
+                  height: '100%',
+                  width: '100%'
+                }}
+                rootProps={{ 'data-testid': '1' }}
+              />
+          </div>
+          </Card.Body>
+        </Card>
+        <h4 class="sub-header">Past Jobs</h4>
         <table class="table">
           <thead>
             <tr>
@@ -82,26 +147,6 @@ export default class Company extends React.Component {
             {this.tableRows()}
           </tbody>
         </table>
-        <h3 class="sub-header">Breakdown of Hires By Work Term</h3>
-        <Chart
-          width={'500px'}
-          height={'500px'}
-          chartType="PieChart"
-          loader={<div>Loading Chart</div>}
-          data={[
-            ['Term', 'Number'],
-            ['1', this.state.hires_by_term[1]],
-            ['2', this.state.hires_by_term[2]],
-            ['3', this.state.hires_by_term[3]],
-            ['4', this.state.hires_by_term[4]],
-            ['5', this.state.hires_by_term[5]],
-            ['6', this.state.hires_by_term[6]],
-          ]}
-          options={{
-            title: '',
-          }}
-          rootProps={{ 'data-testid': '1' }}
-        />
       </>
     );
   }

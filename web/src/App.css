@@ -20,17 +20,6 @@ body {
   width: 10%;
 }
 
-/* table {
-  width: 100%;
-} */
-
-/* table,
-th,
-td {
-  border: 1px solid black;
-  border-collapse: collapse;
-} */
-
 .navbar {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -47,30 +36,83 @@ table .mmr {
   width: 20%;
 }
 
-/* th,
-td {
-  height: 30px;
-  padding: 5px;
-} */
-
 .sub-header {
   margin-top: 3%;
+  font-size: calc(1.275rem + 0.3vw);
+  font-weight: 500;
 }
 
 .company-header {
   display: flex;
-  flex-direction: row;
-  width: 50%;
   align-items: center;
 }
 
-.company-header .company-name {
-  margin-right: 2%;
+.company-name {
+  margin-right: 5px;
+  font-size: calc(1.325rem + 0.9vw);
+  font-weight: 500;
+}
+
+.badge {
+  color: #737379 !important;
+  background-color: #e6ecf1 !important;
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 1em;
+  font-weight: 500;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+
+.company-info-salary {
+  font-size: calc(1.3rem + 0.6vw);
+  font-weight: 500;
+}
+
+.piechart-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.job-company-name {
+  color: #737379 !important;
+  font-size: calc(1.275rem + 0.3vw);
+}
+
+.job-title-name {
+  font-size: calc(1.325rem + 0.9vw);
+  font-weight: 500;
+}
+
+#chart_div {
+  display: block;
+  margin: 0 auto;
 }
 
 .review-input {
   width: 75%;
   margin: 1% 0%;
+}
+
+.review-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.review-header .btn {
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+.review-card {
+  margin-bottom: 10px;
 }
 
 textarea {

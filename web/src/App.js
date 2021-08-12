@@ -4,14 +4,12 @@ import Jobs from './Jobs.js';
 import Job from './Job.js';
 import Companies from './Companies.js';
 import Company from './Company.js';
-// import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
-// import Container from 'react-bootstrap/Container';
-import { Navbar,Nav,NavDropdown,Form,FormControl,Button,Container } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container } from 'react-bootstrap'
 
 const Header = props => {
   const { location } = props;
   return (
-    <Navbar bg="none" variant="light" expand="lg">
+    <Navbar class="nav" bg="none" variant="light" expand="lg">
     <Navbar.Brand href="/">Coop MMR</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
