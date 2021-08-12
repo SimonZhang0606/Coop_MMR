@@ -50,7 +50,7 @@ export default class Company extends React.Component {
   tableRows() {
     return this.state.jobs.map((j) => (
       <tr key={`job-${j.jid}`}>
-        <td>{j.job_title}</td>
+        <td><a href={`/job/${j.jid}`}>{j.job_title}</a></td>
         <td>{j.job_avg_salary > 0 ? j.job_avg_salary : 'N/A'}</td>
         <td>{j.job_avg_rating ? j.job_avg_rating : 'N/A'}</td>
       </tr>

@@ -23,8 +23,8 @@ export default class Companies extends React.Component {
     return this.state.companies.map((c) => (
       <tr key={`company-${c.cid}`}>
         <td><a href={`/company/${c.cid}`}>{c.company_name}</a></td>
-        <td>{c.company_avg_salary > 0 ? c.company_avg_salary : null}</td>
-        <td>{c.company_avg_rating}</td>
+        <td>{c.company_avg_salary > 0 ? c.company_avg_salary : '-'}</td>
+        <td>{c.company_avg_rating ? c.company_avg_rating : '-'}</td>
         <td>{c.company_mmr}</td>
       </tr>
     ));
@@ -36,9 +36,9 @@ export default class Companies extends React.Component {
     switch(type) {
       case "company":
         if (!ascending) {
-          rows.sort((a,b) => (a.company_name > b.company_name) ? 1 : ((b.company_name > a.company_name) ? -1 : 0));
+          rows.sort((a,b) => (a.company_name.toLowerCase() > b.company_name.toLowerCase()) ? 1 : ((b.company_name.toLowerCase() > a.company_name.toLowerCase()) ? -1 : 0));
         } else {
-          rows.sort((a,b) => (a.company_name > b.company_name) ? -1 : ((b.company_name > a.company_name) ? 1 : 0));
+          rows.sort((a,b) => (a.company_name.toLowerCase() > b.company_name.toLowerCase()) ? -1 : ((b.company_name.toLowerCase() > a.company_name.toLowerCase()) ? 1 : 0));
         }
         break;
       case "salary":
