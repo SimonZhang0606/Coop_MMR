@@ -1,6 +1,5 @@
 import React from "react";
 import Chart from "react-google-charts";
-import Badge from 'react-bootstrap/Badge';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 
