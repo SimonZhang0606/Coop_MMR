@@ -8,17 +8,17 @@ import Form from 'react-bootstrap/Form';
 
 export default class Company extends React.Component {
   state = {
-    jid: null, 
+    jid: null,
     cid: null,
     company_name: null,
-    job_avg_rating: null, 
-    job_avg_salary: null, 
-    job_max_salary: null, 
-    job_min_salary: null, 
-    job_rating_rank: null, 
-    job_salary_rank: null, 
+    job_avg_rating: null,
+    job_avg_salary: null,
+    job_max_salary: null,
+    job_min_salary: null,
+    job_rating_rank: null,
+    job_salary_rank: null,
     job_title: null,
-    reviews: [], 
+    reviews: [],
     tags: [],
     hires_by_term: {},
     review_headline: null,
@@ -33,19 +33,19 @@ export default class Company extends React.Component {
     fetch(`http://localhost:5000/jobs/${jid}`)
       .then((response) => response.json())
       .then((result) => {
-        this.setState({ 
+        this.setState({
           jid: jid,
           cid: result.cid,
           company_name: result.company_name,
-          job_avg_rating: result.job_avg_rating, 
-          job_avg_salary: result.job_avg_salary, 
-          job_max_salary: result.job_max_salary, 
-          job_min_salary: result.job_min_salary, 
-          job_rating_rank: result.job_rating_rank, 
-          job_salary_rank: result.job_salary_rank, 
+          job_avg_rating: result.job_avg_rating,
+          job_avg_salary: result.job_avg_salary,
+          job_max_salary: result.job_max_salary,
+          job_min_salary: result.job_min_salary,
+          job_rating_rank: result.job_rating_rank,
+          job_salary_rank: result.job_salary_rank,
           job_title: result.job_title,
-          reviews: result.reviews.slice(0), 
-          tags: result.tags
+          reviews: result.reviews.slice(0),
+          tags: result.tags,
         });
         let hires = {};
         for (const obj of result.hires_by_term) {
@@ -56,7 +56,7 @@ export default class Company extends React.Component {
             hires[i] = 0;
           }
         }
-        this.setState({hires_by_term: hires});
+        this.setState({ hires_by_term: hires });
       })
       .catch((e) => {
         console.log(e);
@@ -81,15 +81,15 @@ export default class Company extends React.Component {
     e.preventDefault();
     if (!(this.state.review_headline && this.state.review_body && this.state.review_rating)) return ;
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
         jid: this.state.jid,
         cid: this.state.cid,
         headline: this.state.review_headline,
         review_body: this.state.review_body,
-        rating: this.state.review_rating
-      })
+        rating: this.state.review_rating,
+      }),
     };
     fetch(`http://localhost:5000/jobs/${this.state.jid}/reviews`, requestOptions)
         .then(response => response.json())
@@ -109,21 +109,23 @@ export default class Company extends React.Component {
   }
 
   handleChange(e, type) {
-    switch(type) {
+    switch (type) {
       case "review_headline":
         this.setState({
-          review_headline: e.target.value
-        })
+          review_headline: e.target.value,
+        });
         break;
       case "review_rating":
         this.setState({
-          review_rating: e.target.value
-        })
+          review_rating: e.target.value,
+        });
         break;
       case "review_body":
         this.setState({
-          review_body: e.target.value
-        })
+          review_body: e.target.value,
+        });
+        break;
+      default:
         break;
     }
   }

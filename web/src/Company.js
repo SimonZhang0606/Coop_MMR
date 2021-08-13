@@ -12,7 +12,7 @@ export default class Company extends React.Component {
     min_salary: null,
     mmr: null,
     mmr_rank: null,
-    name: null, 
+    name: null,
     jobs: [],
     hires_by_term: {},
   };
@@ -23,7 +23,7 @@ export default class Company extends React.Component {
     fetch(`http://localhost:5000/companies/${cid}`)
       .then((response) => response.json())
       .then((result) => {
-        this.setState({ 
+        this.setState({
           avg_rating: result.company_avg_rating,
           avg_salary: result.company_avg_salary,
           max_salary: result.company_max_salary,
@@ -32,7 +32,7 @@ export default class Company extends React.Component {
           mmr_rank: result.company_mmr_rank,
           name: result.company_name,
           jobs: result.jobs,
-          hires_by_term: result.hires_by_term
+          hires_by_term: result.hires_by_term,
         });
         let hires = {};
         for (const obj of result.hires_by_term) {
@@ -43,7 +43,7 @@ export default class Company extends React.Component {
             hires[i] = 0;
           }
         }
-        this.setState({hires_by_term: hires});
+        this.setState({ hires_by_term: hires });
       })
       .catch((e) => {
         console.log(e);
@@ -53,9 +53,11 @@ export default class Company extends React.Component {
   tableRows() {
     return this.state.jobs.map((j) => (
       <tr key={`job-${j.jid}`}>
-        <td><a href={`/job/${j.jid}`}>{j.job_title}</a></td>
-        <td>{j.job_avg_salary > 0 ? '$' + j.job_avg_salary : 'N/A'}</td>
-        <td>{j.job_avg_rating ? j.job_avg_rating : 'N/A'}</td>
+        <td>
+          <a href={`/job/${j.jid}`}>{j.job_title}</a>
+        </td>
+        <td>{j.job_avg_salary > 0 ? "$" + j.job_avg_salary : "N/A"}</td>
+        <td>{j.job_avg_rating ? j.job_avg_rating : "N/A"}</td>
       </tr>
     ));
   }
@@ -143,9 +145,7 @@ export default class Company extends React.Component {
               <th>Rating(/5)</th>
             </tr>
           </thead>
-          <tbody>
-            {this.tableRows()}
-          </tbody>
+          <tbody>{this.tableRows()}</tbody>
         </table>
       </>
     );
