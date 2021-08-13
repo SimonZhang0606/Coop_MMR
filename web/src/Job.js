@@ -128,8 +128,7 @@ export default class Company extends React.Component {
     }
   }
 
-  showReviewModal (e) {
-    console.log("showReviewModal");
+  showReviewModal(e) {
     this.setState({
       showing_review_modal: true
     });
