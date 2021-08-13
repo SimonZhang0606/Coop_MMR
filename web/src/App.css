@@ -47,7 +47,7 @@ table .mmr {
   align-items: center;
 }
 
-.company-name {
+.company-header-name {
   margin-right: 5px;
   font-size: calc(1.325rem + 0.9vw);
   font-weight: 500;

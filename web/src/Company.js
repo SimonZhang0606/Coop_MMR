@@ -66,7 +66,7 @@ export default class Company extends React.Component {
     return (
       <>
         <div class="company-header">
-            <span class="company-name">{this.state.name}</span>
+            <span class="company-header-name">{this.state.name}</span>
             <span class="badge">{`# ${this.state.mmr_rank} Rank`}</span>
         </div>
         <CardGroup>
